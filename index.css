@@ -42,7 +42,7 @@ button:hover{
 
 header{
     background-color: rgb(245,245,245);
-    padding: 2px 300px;
+    padding: 0.5px 300px;
 }
 
 header .logo{
@@ -83,12 +83,12 @@ header a:hover{
     justify-content: center;
     text-align: center;
     flex-direction: column;
-    height: 200vh;
+    height: 150vh;
     background-image: linear-gradient(
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url(imagenes/ChatGPT\ Image\ 21\ jul\ 2025\,\ 20_57_54.png);
+    ,url(imagenes/ChatGPT\ Image\ 22\ jul\ 2025\,\ 09_32_10.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -101,9 +101,9 @@ color:rgb(255, 255, 255);
     font-size: 1.75em;
 }
 
-#somos-rentaplus .container{
- text-align: center;
- padding: 300px 12px;   
+#somos-Rentaplus .container {
+    text-align: center;
+    padding: 80px 12px 80px 12px; /* 80px arriba y abajo, 12px a los lados */
 }
 
 #Algunos-de-nuestros-productos{
@@ -139,7 +139,7 @@ background-image: linear-gradient(
 ,url("imagenes/ConsolaPlayStation5PRO-05.webp");
 background-position: center center;
 background-size: cover;
-padding: 100px 0px;
+padding: 100px 30px;
 margin: 40px;
 border-radius: 25px;
 }
@@ -149,7 +149,7 @@ border-radius: 25px;
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url("imagenes/D_Q_NP_2X_755012-MCO87172003040_072025-E.webp");
+    ,url("imagenes/images.jfif");
     background-position: center center;
 background-size: cover;
 padding: 100px 0px;
@@ -162,7 +162,7 @@ border-radius: 25px;
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
     )
-    ,url("imagenes/descarga\ \(1\).jfif");
+    ,url("imagenes/Imagen1.png");
     background-position: center center;
 background-size: cover;
 padding: 150px 0px;
@@ -186,9 +186,16 @@ display: flex;
     justify-content: center;
     text-align: center;
     flex-direction: column;
-    height: 80vh;
-    background-color: rgb(38,38,38);
     color: white;
+    height: 100vh;
+    background-image: linear-gradient(
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+    )
+    ,url("imagenes/Canva\ Design.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 #Aplica-ya h2{
@@ -232,7 +239,7 @@ align-items: flex-end;
     }
     #somos-Rentaplus .container{
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
 
     }
 
@@ -248,18 +255,18 @@ align-items: flex-end;
     }
 
     #somos-Rentaplus h2{
-        margin-top: 8px;
+        margin-top: 20px;
     }
 
     #somos-Rentaplus .img-container{
     background-image: linear-gradient(
         rgba(0,0,0,0.5),
         rgba(0,0,0,0.5)
-    ),url("imagenes/Captura\ de\ pantalla\ 2025-07-21\ 234911.png");
+    ),url("imagenes/barista-en-la-barra.jpg");
     background-size: cover;
     background-position: center center;
-    height: 500px;
-    width: 300px;
+    height: 250px;
+    width: 400px;
     }
 
     #Algunos-de-nuestros-productos .programas{
@@ -292,6 +299,11 @@ align-items: flex-end;
 
     #Aplica-ya h2{
         font-size: 5em;
+        margin-bottom: 10px;
+    }
+    
+    #Aplica-ya h3{
+        margin-top: 0;
     }
 
     #Aplica-ya button{
