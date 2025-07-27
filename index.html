@@ -6,13 +6,24 @@
 </head>
 <body>
     <header>
+        <h2>Bienvenido</h2>
 <div class="container">
     <p class="logo">Rentaplus</p>
     <nav>
  <a href="#somos-Rentaplus">Sobre nosotros</a>
  <a href="#Algunos-de-nuestros-productos">Nuestros productos</a>
  <a href="#caracteristicas">Caracteristicas</a>
-    <a href="login.html">Iniciar sesión</a>
+    <a id="link-sesion" href="login.html">Iniciar sesión</a>
+    <div id="usuario-menu" class="usuario-container" style="display: none;">
+  <div class="usuario-icono">👤</div>
+  <div class="usuario-dropdown">
+    <p id="usuario-nombre"></p>
+    <button id="cerrar-sesion-btn">Cerrar sesión</button>
+  </div>
+  <div class="usuario-icono" role="button" tabindex="0" aria-label="Abrir menú de usuario"></div>
+
+</div>
+
     </nav>
 </div>
     </header>
@@ -75,11 +86,56 @@
         <button>VER MAS</button>    
 </section>
 
-  <button onclick="cerrarSesion()" style="position:fixed;top:20px;right:20px;z-index:1000;">Cerrar sesión</button>
   <footer>
      <div class="container">
         <p>&copy; Monovas company 2025</p>
      </div>
   </footer>
+<script type="module" src="firebase.js"></script>
+<script type="module">
+  const linkSesion = document.getElementById('link-sesion');
+  const contenedorUsuario = document.getElementById("usuario-menu");
+  const icono = document.querySelector(".usuario-icono");
+  const dropdown = document.querySelector(".usuario-dropdown");
+  const nombreElemento = document.getElementById("usuario-nombre");
+  const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
+
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      linkSesion.textContent = "Cerrar sesión";
+      linkSesion.href = "#";
+      linkSesion.addEventListener('click', (e) => {
+        e.preventDefault();
+        signOut(auth).then(() => {
+          alert("Sesión cerrada");
+          window.location.href = "index.html"; 
+        });
+      });
+
+      contenedorUsuario.style.display = "inline-block";
+      nombreElemento.textContent = user.displayName || user.email;
+      if (linkSesion) linkSesion.style.display = "none";
+    } else {
+      linkSesion.textContent = "Iniciar sesión";
+      linkSesion.href = "login.html";
+      contenedorUsuario.style.display = "none";
+    }
+  });
+
+  icono.addEventListener("click", () => {
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  });
+
+  cerrarSesionBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.reload();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!contenedorUsuario.contains(e.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+</script>
 </body>
 </html>
