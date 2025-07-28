@@ -667,4 +667,10 @@ body.login-body {
   cursor: pointer;
 }
 
+.img-impresora {
+    max-width: 300px;
+}
 
+.img-freidora {
+    max-width: 350px;
+}
