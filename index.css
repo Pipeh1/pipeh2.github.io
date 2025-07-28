@@ -365,7 +365,7 @@ body.login-body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(245,245,245);
+  background-color: rgb(245, 245, 245);
 }
 
 .login-center {
@@ -393,7 +393,7 @@ body.login-body {
   width: 100%;
   background: #fff;
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
   padding: 32px 24px;
   border: 1px solid #eee;
 }
@@ -416,12 +416,13 @@ body.login-body {
   font-weight: bold;
   cursor: pointer;
   width: 100%;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .auth-form button:hover {
   background: rgb(230, 153, 0);
 }
+
 
 .usuario-container {
     position: relative;
@@ -470,16 +471,27 @@ body.login-body {
     background: rgb(202, 133, 0);
 }
 
+.login-form button{
+    font-size: 1.2em;
+    padding: 10px;
+    border-radius: 8px;
+    background: orange;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .btn-alquilar {
     display: inline-block;
     background: orange;
     color: white;
-    padding: 10px 16px;
-    border-radius: 8px;
     font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 8px;
     text-decoration: none;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: background 0.2s ease;
 }
 
 .btn-alquilar:hover {
@@ -501,10 +513,6 @@ body.login-body {
     text-align: center;
 }
 
-.producto-detalle img {
-    border-radius: 12px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.15);
-}
 
 .producto-detalle button {
     background: orange;
@@ -519,3 +527,144 @@ body.login-body {
 .producto-detalle button:hover {
     background: rgb(202, 133, 0);
 }
+
+.producto-body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 20px;
+}
+
+.producto-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 40px;
+    flex-wrap: wrap;
+}
+
+.producto-imagen {
+    flex: 1 1 100%;
+   padding: 20px;
+   text-align: center;
+   background: white; 
+}
+
+.producto-imagen img{
+    width: 100%;
+    border-radius: 12px;
+    margin: 0 auto;
+    display: block;
+    max-width: 600px;
+    height: auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    object-fit: contain;
+}
+
+.producto-info {
+    flex: 1 1 100%;
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    margin-top: 20px;
+}
+.producto-info h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+
+}
+
+.producto-brand {
+    font-size: 1em;
+    color: #007185;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.producto-precio {
+    font-size: 1.6em;
+    color: #b12704;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.producto-caja-compra {
+ text-align: center;
+ margin-top: 20px;
+}
+
+.producto-caja-compra p {
+ margin: 8px 0;
+ font-size: 1.2em;
+}
+
+.producto-info ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-alquilar-grande {
+  font-size: 1.5em;
+  padding: 18px 40px;
+  background-color: #ffa41c;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  display: inline-block;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: background 0.2s ease;
+}
+
+.btn-alquilar-grande:hover {
+    background-color: rgb(202, 133, 0);
+}
+
+.producto-descripcion h2 {
+    margin-top: 30px;
+    text-align: left;
+    padding: 0 10%;   
+}
+
+.producto-descripcion ul {
+    padding-left: 20px;
+    list-style: disc;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+.registro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  padding: 30px 20px;
+  border: 1px solid #eee;
+}
+.registro-form input {
+  padding: 12px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+.registro-form button {
+  font-size: 1.2em;
+  padding: 10px;
+  border-radius: 8px;
+  background: orange;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
