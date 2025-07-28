@@ -35,11 +35,14 @@ window.OAuthProvider = OAuthProvider;
 window.signInWithPopup = signInWithPopup;
 
 const saludo = document.getElementById("bienvenida");
-onAuthStateChanged(auth, user => {
-  if (user && user.displayName) {
-    saludo.textContent = `Hola, ${user.displayName}`;
-    saludo.style.display = "block";
-  } else {
-    saludo.style.display = "none";
-  }
-});
+
+if (saludo) {
+  onAuthStateChanged(auth, user => {
+    if (user && user.displayName) {
+      saludo.textContent = `Hola, ${user.displayName}`;
+      saludo.style.display = "block";
+    } else {
+      saludo.style.display = "none";
+    }
+  });
+}
