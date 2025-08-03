@@ -692,9 +692,8 @@ body.login-body {
 
 .nav-header {
     background-color: white;
-    padding: 16px 32px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    width: 100%;    
 }
 
 .nav-container {
@@ -703,19 +702,39 @@ body.login-body {
     justify-content: space-between;
     max-width: 1200px;
     margin: auto;
+    padding: 16px 32px;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.nav-header.hide {
+    transform: translateY(-100%);
+}
+
+.nav-left {
+    flex-shrink: 0;
 }
 
 .logo {
-    font-size: 2em;
+    font-size: 2.2em;
     font-weight: bold;
     color: orange;
     margin: 0;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .nav-links {
     display: flex;
     gap: 20px;
-    align-items: center;
 }
 
 .nav-links a {
@@ -727,6 +746,7 @@ body.login-body {
 .usuario-container {
     position: relative;
     cursor: pointer;
+    font-size: 1.3em;
 }
 
 .usuario-icono {
@@ -771,4 +791,10 @@ body.login-body {
     font-size: 1.8em;
     text-align: center;
   }
+}
+
+#link-sesion {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
 }

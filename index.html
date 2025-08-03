@@ -7,15 +7,13 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <header class="nav-header">
+<header class="nav-header" id="main-header">
   <div class="nav-container">
-    <p class="logo">Rentaplus</p>
-    <nav class="nav-links">
-      <a href="#somos-Rentaplus">Sobre nosotros</a>
-      <a href="#Algunos-de-nuestros-productos">Nuestros productos</a>
-      <a href="#caracteristicas">Características</a>
-      <a id="link-sesion" href="login.html">Iniciar sesión</a>
+    <div class="nav-left">
+      <p class="logo">Rentaplus</p>
+    </div>
 
+    <div class="nav-right">
       <div id="usuario-menu" class="usuario-container" style="display: none;">
         <div class="usuario-icono">👤</div>
         <div class="usuario-dropdown">
@@ -23,9 +21,11 @@
           <button id="cerrar-sesion-btn">Cerrar sesión</button>
         </div>
       </div>
-    </nav>
+
+      <a id="link-sesion" href="login.html">Iniciar sesión</a>
+    </div>
   </div>
- </header>
+</header>
 
     <section id="hero">
         <h1>Alquila productos <br>que necesites</h1>
@@ -136,5 +136,23 @@
     }
   });
 </script>
+
+<script>
+  let lastScroll = 0;
+  const header = document.getElementById("main-header");
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > lastScroll && currentScroll > 80) {
+      header.classList.add("hide");
+    } else if (currentScroll < lastScroll && lastScroll - currentScroll > 50) {
+      header.classList.remove("hide");
+    }
+
+    lastScroll = currentScroll;
+  });
+</script>
+
 </body>
 </html>
