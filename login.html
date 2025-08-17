@@ -4,33 +4,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar sesión</title>
+  <title>Iniciar sesión - Rentaplus</title>
   <link rel="stylesheet" href="index.css">
-</head>
-<body class="login-body">
-  <div class="login-center">
-    <a href="index.html" class="login-title">Rentaplus</a>
-    <form class="auth-form">
-      <input type="email" placeholder="Correo" required>
-      <input type="password" placeholder="Contraseña" required>
-      <button type="submit">Iniciar sesión</button>
-    </form>
-    <a href="Registro.html">¿No tienes cuenta? Regístrate</a>
-  </div>
 
-  <script type="module" src="firebase.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    .login-container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .login-container .logo {
+      display: block;
+      font-size: 32px;
+      font-weight: bold;
+      color: #ffbb00;
+      text-decoration: none;
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      text-align: left;
+      font-weight: 600;
+      font-size: 14px;
+      color: #444;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      background: #f5d000;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: orange;
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    p a {
+      color: orange;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    p a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main class="login-container">
+    <a href="index.html" class="logo">Rentaplus</a>
+
+    <form id="login-form">
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" placeholder="correo@ejemplo.com" required>
+
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" placeholder="********" required>
+
+      <button type="submit">Ingresar</button>
+    </form>
+
+    <p>¿No tienes cuenta? <a href="Registro.html">Regístrate aquí</a></p>
+  </main>
+
   <script type="module">
-    const form = document.querySelector('.auth-form');
-    form.addEventListener('submit', async (e) => {
+    import { auth, signInWithEmailAndPassword } from "./firebase.js";
+
+    const form = document.getElementById("login-form");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const correo = form.querySelector('input[type="email"]').value;
-      const contraseña = form.querySelector('input[type="password"]').value;
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
       try {
-        await signInWithEmailAndPassword(auth, correo, contraseña);
-        alert('Inicio de sesión exitoso');
-        window.location.href = 'index.html';
-      } catch (err) {
-        alert('Error: ' + err.message);
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Inicio de sesión exitoso ✅");
+        window.location.href = "index.html";
+      } catch (error) {
+        alert("Error al iniciar sesión: " + error.message);
       }
     });
   </script>

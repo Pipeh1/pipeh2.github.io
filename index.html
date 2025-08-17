@@ -1,207 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rentaplus</title>
-    <link rel="stylesheet" href="index.css">
+  <title>Rentaplus</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<header class="nav-header" id="main-header">
-  <div class="nav-container">
-    <div class="nav-left">
-      <p class="logo">Rentaplus</p>
+  <header class="nav-header" id="main-header">
+    <div class="nav-container">
+      <div class="nav-left">
+        <p class="logo">Rentaplus</p>
+      </div>
+      <div class="nav-right">
+        <!-- Menú usuario (oculto por defecto) -->
+        <div id="usuario-menu" class="usuario-container" style="display: none;">
+          <div class="usuario-icono">👤</div>
+          <div class="usuario-dropdown">
+            <p id="usuario-nombre"></p>
+            <a href="perfil.html" class="perfil-link">⚙️ Configurar perfil</a>
+            <button id="cerrar-sesion-btn">Cerrar sesión</button>
+          </div>
+        </div>
+        <!-- Link de sesión -->
+        <a id="link-sesion" href="login.html">Iniciar sesión</a>
+      </div>
     </div>
+  </header>
 
-    <div class="nav-right">
-      <div id="usuario-menu" class="usuario-container" style="display: none;">
-  <img id="usuario-foto" class="usuario-foto" src="img/default.jpg" alt="Usuario" />
-  <div class="usuario-dropdown">
-    <p id="usuario-nombre">Nombre</p>
-    <a href="perfil.html" class="perfil-link">Editar perfil</a>
-    <button id="cerrar-sesion-btn">Cerrar sesión</button>
-  </div>
-</div>
-      <a id="link-sesion" href="login.html">Iniciar sesión</a>
-    </div>
-  </div>
-</header>
+  <section id="hero">
+    <h1>Alquila productos <br>que necesites</h1>
+    <button>ALQUILA YA</button>
+  </section>
 
-    <section id="hero">
-        <h1>Alquila productos <br>que necesites</h1>
-        <button>ALQUILA YA </button>
-    </section>
- <section id="somos-Rentaplus">
-     <div class="container">
-        <div class="img-container"></div>
-         <div class="texto">
-
-            <h2>Somos <span 
-                class="color-acento">Rentaplus</span></h2> 
-                <p>Somos una empresa joven, innovadora y comprometida Nuestro propósito es ayudarte a ahorrar dinero, espacio y tiempo alquilando lo que necesites, cuando lo necesites.</p>
-         </div> 
-    </div>
-</section>
-
-<section id="Algunos-de-nuestros-productos">
+  <section id="somos-Rentaplus">
     <div class="container">
-        <h2>Algunos de nuestros productos</h2>
-<div class="programas">
-    <div class="carta">
-        <h3>Play Station 5</h3>
-        <p>Experimenta la nueva generación de videojuegos con gráficos ultra realistas, carga rápida y compatibilidad con títulos exclusivos. Ideal para entretenimiento en casa o eventos especiales</p>
-        <a href="Producto-ps5.html" class="btn-alquilar">ALQUILA YA</a>   
+      <div class="img-container"></div>
+      <div class="texto">
+        <h2>Somos <span class="color-acento">Rentaplus</span></h2> 
+        <p>Somos una empresa joven, innovadora y comprometida. Nuestro propósito es ayudarte a ahorrar dinero, espacio y tiempo alquilando lo que necesites, cuando lo necesites.</p>
+      </div>
     </div>
-    
-    <div class="carta">
-        <h3>Freidora</h3>
-        <p>Freidora profesional de una tina, ideal para restaurantes, negocios de comida rápida o eventos. Perfecta para papas fritas, empanadas, tequeños y más. Fácil de usar y de limpiar.</p>
-        <a href="producto-freidora.html" class="btn-alquilar">ALQUILA YA</a>
-    </div>
-    <div class="carta">
-        <h3>Impresora</h3>
-        <p>Equipo multifuncional de alto rendimiento para oficinas y empresas. Imprime, copia y escanea en color o blanco y negro. Alta velocidad, conectividad inalámbrica y capacidad para grandes volúmenes</p>
-        <a href="impresora.html" class="btn-alquilar">ALQUILA YA</a>    
-    </div>
-    </div>
-</div>
-</section>
+  </section>
 
-<section id="caracteristicas">
+  <section id="Algunos-de-nuestros-productos">
     <div class="container">
-        <ul>
-            <li>✔️ 100% online</li>
-            <li>✔️ 100% seguro</li>
-            <li>✔️ Llega rapido</li>
-            <li>✔️ soporte rapido</li>
-        </ul>
+      <h2>Algunos de nuestros productos</h2>
+      <div class="programas">
+        <div class="carta">
+          <h3>Play Station 5</h3>
+          <p>Experimenta la nueva generación de videojuegos con gráficos ultra realistas, carga rápida y compatibilidad con títulos exclusivos.</p>
+          <a href="Producto-ps5.html" class="btn-alquilar">ALQUILA YA</a>   
+        </div>
+        <div class="carta">
+          <h3>Freidora</h3>
+          <p>Freidora profesional de una tina, ideal para restaurantes, negocios de comida rápida o eventos.</p>
+          <a href="producto-freidora.html" class="btn-alquilar">ALQUILA YA</a>
+        </div>
+        <div class="carta">
+          <h3>Impresora</h3>
+          <p>Impresora KONICA MINOLTA BIZHUB C454e de alto rendimiento, ideal para empresas.</p>
+          <a href="impresora.html" class="btn-alquilar">ALQUILA YA</a>    
+        </div>
+      </div>
     </div>
-<section id="Aplica-ya">
+  </section>
+
+  <section id="caracteristicas">
+    <div class="container">
+      <ul>
+        <li>✔️ 100% online</li>
+        <li>✔️ 100% seguro</li>
+        <li>✔️ Llega rápido</li>
+        <li>✔️ Soporte inmediato</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="Aplica-ya">
     <div class="moto">
-
-
-        <h2>¿NECESITAS EQUIPOS PARA TU EMPRESA?</h2>
-        <h3>Alquila facilente lo que necesites para tus proyectos. <br> Ahorra dinero y obten lo mejor, justo cuando lo necesitas</h3>
-        <button>VER MAS</button>    
-</section>
+      <h2>¿NECESITAS EQUIPOS PARA TU EMPRESA?</h2>
+      <h3>Alquila fácilmente lo que necesites para tus proyectos. <br> Ahorra dinero y obtén lo mejor, justo cuando lo necesitas</h3>
+      <button>VER MÁS</button>    
+    </div>
+  </section>
 
   <footer>
-     <div class="container">
-        <p>&copy; Monovas company 2025</p>
-     </div>
+    <div class="container">
+      <p>&copy; Monovas company 2025</p>
+    </div>
   </footer>
-<script type="module" src="firebase.js"></script>
-<script type="module">
-  const linkSesion = document.getElementById('link-sesion');
-  const contenedorUsuario = document.getElementById("usuario-menu");
-  const icono = document.querySelector(".usuario-icono");
-  const dropdown = document.querySelector(".usuario-dropdown");
-  const nombreElemento = document.getElementById("usuario-nombre");
-  const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
 
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      linkSesion.textContent = "Cerrar sesión";
-      linkSesion.href = "#";
+  <!-- Firebase -->
+  <script type="module">
+    import { auth, signOut, onAuthStateChanged } from "./firebase.js";
 
-      contenedorUsuario.style.display = "inline-block";
-      nombreElemento.textContent = user.displayName || user.email;
-      if (linkSesion) linkSesion.style.display = "none";
-    } else {
-      linkSesion.textContent = "Iniciar sesión";
-      linkSesion.href = "login.html";
-      contenedorUsuario.style.display = "none";
-    }
-  });
+    const linkSesion = document.getElementById('link-sesion');
+    const contenedorUsuario = document.getElementById("usuario-menu");
+    const icono = document.querySelector(".usuario-icono");
+    const dropdown = document.querySelector(".usuario-dropdown");
+    const nombreElemento = document.getElementById("usuario-nombre");
+    const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
 
-  icono.addEventListener("click", () => {
-    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-  });
-
-  cerrarSesionBtn.addEventListener("click", async () => {
-  try {
-    await signOut(auth);
-    window.location.href = "login.html"; // o "index.html"
-  } catch (err) {
-    console.error("Error al cerrar sesión:", err);
-    alert("Error al cerrar sesión");
-  }
-});
-
-  document.addEventListener("click", (e) => {
-    if (!contenedorUsuario.contains(e.target)) {
-      dropdown.style.display = "none";
-    }
-  });
-</script>
-
-<script>
-  let lastScroll = window.scrollY;
-  const header = document.getElementById("main-header");
-
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY;
-
-    if (currentScroll > lastScroll && currentScroll > 60) {
-      header.classList.add("hide");
-    } else if (currentScroll < lastScroll && lastScroll - currentScroll > 50) {
-      header.classList.remove("hide");
-    }
-     lastScroll = currentScroll;
-  });
-</script>
-
-<script>
-  const usuarioFoto = document.getElementById("usuario-foto");
-  const usuarioMenu = document.getElementById("usuario-menu");
-  
-  usuarioFoto.addEventListener("click", () => {
-    usuarioMenu.classList.toggle("activo");
-  });
-
-  window.addEventListener("click", (e) => {
-    if (!usuarioMenu.contains(e.target)) {
-      usuarioMenu.classList.remove("activo");
-    }
-  });
-</script>
-
-<script type="module">
-  import { auth, signOut, onAuthStateChanged } from './firebase.js';
-
-   cerrarSesionBtn?.addEventListener("click", async () => {
-  try {
-    await signOut(auth);
-    window.location.href = "login.html";
-  } catch (err) {
-    alert("Error al cerrar sesión: " + err.message);
-  }
-});
-
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      contenedorUsuario.style.display = "inline-block";
-      nombreElemento.textContent = user.displayName || user.email;
-
-      if (user.photoURL) {
-        usuarioFoto.src = user.photoURL;
+    // 🔹 Estado de sesión
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        contenedorUsuario.style.display = "inline-block";
+        nombreElemento.textContent = user.displayName || user.email;
+        linkSesion.style.display = "none"; // ocultar "Iniciar sesión"
       } else {
-        usuarioFoto.src = "img/default.jpg";
-      }
-
-      if (linkSesion) linkSesion.style.display = "none";
-    } else {
-      contenedorUsuario.style.display = "none";
-      if (linkSesion) {
+        contenedorUsuario.style.display = "none";
+        linkSesion.style.display = "inline-block";
         linkSesion.textContent = "Iniciar sesión";
         linkSesion.href = "login.html";
-        linkSesion.style.display = "inline-block";
       }
-    }
-  });
+    });
 
-  if (cerrarSesionBtn && !cerrarSesionBtn.dataset.listenerAdded) {
-    cerrarSesionBtn.dataset.listenerAdded = "true";
+    // 🔹 Toggle menú usuario
+    icono.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!contenedorUsuario.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
+    });
+
+    // 🔹 Cerrar sesión
     cerrarSesionBtn.addEventListener("click", async () => {
       try {
         await signOut(auth);
@@ -210,10 +136,22 @@
         alert("Error al cerrar sesión: " + err.message);
       }
     });
-  }
-</script>
+  </script>
 
+  <!-- 🔹 Animación de header (desaparece al bajar, aparece al subir) -->
+  <script>
+    let lastScroll = 0;
+    const header = document.getElementById("main-header");
 
-
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > lastScroll && currentScroll > 80) {
+        header.classList.add("hide");
+      } else if (currentScroll < lastScroll && lastScroll - currentScroll > 50) {
+        header.classList.remove("hide");
+      }
+      lastScroll = currentScroll;
+    });
+  </script>
 </body>
 </html>

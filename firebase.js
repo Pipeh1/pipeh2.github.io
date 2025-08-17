@@ -5,58 +5,31 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  OAuthProvider,
-  signInWithPopup,
-  updateProfile
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC1illG7VbYLvW81Y-IMwT__67G7bdKeHE",
   authDomain: "Rentaplus-5fe77.firebaseapp.com",
-  projectId: "Rentaplus.5fe77",
-    storageBucket: "Rentaplus-5fe77.firebasestorage.com",
-    messagingSenderId: "373936369407",
+  projectId: "Rentaplus-5fe77",
+  storageBucket: "Rentaplus-5fe77.appspot.com",
+  messagingSenderId: "373936369407",
   appId: "1:373936369407:web:44593a6343a5d8853ca6ca",
-    measurementId: "G-PBGK43T70T"
+  measurementId: "G-PBGK43T70T"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
-window.auth = auth;
-window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
-window.signInWithEmailAndPassword = signInWithEmailAndPassword;
-window.signOut = signOut;
-window.onAuthStateChanged = onAuthStateChanged;
-window.updateProfile = updateProfile;
-
-window.OAuthProvider = OAuthProvider;
-window.signInWithPopup = signInWithPopup;
-
-const saludo = document.getElementById("bienvenida");
-
-if (saludo) {
-  onAuthStateChanged(auth, user => {
-    if (user && user.displayName) {
-      saludo.textContent = `Hola, ${user.displayName}`;
-      saludo.style.display = "block";
-    } else {
-      saludo.style.display = "none";
-    }
-  });
-}
-
-const usuarioFoto = document.getElementById("usuario-foto");
-
-if (usuarioFoto && user && user.photoURL) {
-  usuarioFoto.src = user.photoURL;
-} else if (usuarioFoto) {
-  usuarioFoto.src = "img/default.jpg"; 
-}
-
-
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-const storage = getStorage(app);
-export { auth, updateProfile, onAuthStateChanged, storage, ref, uploadBytes, getDownloadURL };
+export {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup
+};
