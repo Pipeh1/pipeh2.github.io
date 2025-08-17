@@ -15,13 +15,13 @@
 
     <div class="nav-right">
       <div id="usuario-menu" class="usuario-container" style="display: none;">
-        <div class="usuario-icono">👤</div>
-        <div class="usuario-dropdown">
-          <p id="usuario-nombre"></p>
-          <button id="cerrar-sesion-btn">Cerrar sesión</button>
-        </div>
-      </div>
-
+  <img id="usuario-foto" class="usuario-foto" src="img/default.jpg" alt="Usuario" />
+  <div class="usuario-dropdown">
+    <p id="usuario-nombre">Nombre</p>
+    <a href="perfil.html" class="perfil-link">Editar perfil</a>
+    <button id="cerrar-sesion-btn">Cerrar sesión</button>
+  </div>
+</div>
       <a id="link-sesion" href="login.html">Iniciar sesión</a>
     </div>
   </div>
@@ -103,13 +103,6 @@
     if (user) {
       linkSesion.textContent = "Cerrar sesión";
       linkSesion.href = "#";
-      linkSesion.addEventListener('click', (e) => {
-        e.preventDefault();
-        signOut(auth).then(() => {
-          alert("Sesión cerrada");
-          window.location.href = "index.html"; 
-        });
-      });
 
       contenedorUsuario.style.display = "inline-block";
       nombreElemento.textContent = user.displayName || user.email;
@@ -126,9 +119,14 @@
   });
 
   cerrarSesionBtn.addEventListener("click", async () => {
+  try {
     await signOut(auth);
-    window.location.reload();
-  });
+    window.location.href = "login.html"; // o "index.html"
+  } catch (err) {
+    console.error("Error al cerrar sesión:", err);
+    alert("Error al cerrar sesión");
+  }
+});
 
   document.addEventListener("click", (e) => {
     if (!contenedorUsuario.contains(e.target)) {
@@ -138,21 +136,84 @@
 </script>
 
 <script>
-  let lastScroll = 0;
+  let lastScroll = window.scrollY;
   const header = document.getElementById("main-header");
 
   window.addEventListener("scroll", () => {
-    const currentScroll = window.pageYOffset;
+    const currentScroll = window.scrollY;
 
-    if (currentScroll > lastScroll && currentScroll > 80) {
+    if (currentScroll > lastScroll && currentScroll > 60) {
       header.classList.add("hide");
     } else if (currentScroll < lastScroll && lastScroll - currentScroll > 50) {
       header.classList.remove("hide");
     }
-
-    lastScroll = currentScroll;
+     lastScroll = currentScroll;
   });
 </script>
+
+<script>
+  const usuarioFoto = document.getElementById("usuario-foto");
+  const usuarioMenu = document.getElementById("usuario-menu");
+  
+  usuarioFoto.addEventListener("click", () => {
+    usuarioMenu.classList.toggle("activo");
+  });
+
+  window.addEventListener("click", (e) => {
+    if (!usuarioMenu.contains(e.target)) {
+      usuarioMenu.classList.remove("activo");
+    }
+  });
+</script>
+
+<script type="module">
+  import { auth, signOut, onAuthStateChanged } from './firebase.js';
+
+   cerrarSesionBtn?.addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+    window.location.href = "login.html";
+  } catch (err) {
+    alert("Error al cerrar sesión: " + err.message);
+  }
+});
+
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      contenedorUsuario.style.display = "inline-block";
+      nombreElemento.textContent = user.displayName || user.email;
+
+      if (user.photoURL) {
+        usuarioFoto.src = user.photoURL;
+      } else {
+        usuarioFoto.src = "img/default.jpg";
+      }
+
+      if (linkSesion) linkSesion.style.display = "none";
+    } else {
+      contenedorUsuario.style.display = "none";
+      if (linkSesion) {
+        linkSesion.textContent = "Iniciar sesión";
+        linkSesion.href = "login.html";
+        linkSesion.style.display = "inline-block";
+      }
+    }
+  });
+
+  if (cerrarSesionBtn && !cerrarSesionBtn.dataset.listenerAdded) {
+    cerrarSesionBtn.dataset.listenerAdded = "true";
+    cerrarSesionBtn.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        window.location.href = "login.html";
+      } catch (err) {
+        alert("Error al cerrar sesión: " + err.message);
+      }
+    });
+  }
+</script>
+
+
 
 </body>
 </html>

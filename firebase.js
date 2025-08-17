@@ -46,3 +46,17 @@ if (saludo) {
     }
   });
 }
+
+const usuarioFoto = document.getElementById("usuario-foto");
+
+if (usuarioFoto && user && user.photoURL) {
+  usuarioFoto.src = user.photoURL;
+} else if (usuarioFoto) {
+  usuarioFoto.src = "img/default.jpg"; 
+}
+
+
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+const storage = getStorage(app);
+export { auth, updateProfile, onAuthStateChanged, storage, ref, uploadBytes, getDownloadURL };
