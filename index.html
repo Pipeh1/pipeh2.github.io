@@ -13,7 +13,6 @@
         <p class="logo">Rentaplus</p>
       </div>
       <div class="nav-right">
-        <!-- Menú usuario (oculto por defecto) -->
         <div id="usuario-menu" class="usuario-container" style="display: none;">
           <div class="usuario-icono">👤</div>
           <div class="usuario-dropdown">
@@ -22,7 +21,6 @@
             <button id="cerrar-sesion-btn">Cerrar sesión</button>
           </div>
         </div>
-        <!-- Link de sesión -->
         <a id="link-sesion" href="login.html">Iniciar sesión</a>
       </div>
     </div>
@@ -30,7 +28,7 @@
 
   <section id="hero">
     <h1>Alquila productos <br>que necesites</h1>
-    <button>ALQUILA YA</button>
+    <a href="productos.html" class="btn-alquilar">ALQUILA YA</a>
   </section>
 
   <section id="somos-Rentaplus">
@@ -91,7 +89,6 @@
     </div>
   </footer>
 
-  <!-- Firebase -->
   <script type="module">
     import { auth, signOut, onAuthStateChanged } from "./firebase.js";
 
@@ -102,7 +99,6 @@
     const nombreElemento = document.getElementById("usuario-nombre");
     const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
 
-    // 🔹 Estado de sesión
     onAuthStateChanged(auth, user => {
       if (user) {
         contenedorUsuario.style.display = "inline-block";
@@ -116,7 +112,6 @@
       }
     });
 
-    // 🔹 Toggle menú usuario
     icono.addEventListener("click", () => {
       dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     });
@@ -127,7 +122,6 @@
       }
     });
 
-    // 🔹 Cerrar sesión
     cerrarSesionBtn.addEventListener("click", async () => {
       try {
         await signOut(auth);
@@ -138,7 +132,6 @@
     });
   </script>
 
-  <!-- 🔹 Animación de header (desaparece al bajar, aparece al subir) -->
   <script>
     let lastScroll = 0;
     const header = document.getElementById("main-header");
@@ -152,6 +145,36 @@
       }
       lastScroll = currentScroll;
     });
+
+    function cardHtml(item) {
+  const tipoTexto = item.rentalType === "dia" ? "día" 
+                   : item.rentalType === "semana" ? "semana" 
+                   : "mes";
+
+  return `
+    <div class="carta">
+      <img src="${item.imageUrl}" alt="${item.title}" 
+           style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:12px">
+      <h3>${item.title}</h3>
+      <p>${item.location || ""}</p>
+      <p><strong>$${(item.price || 0).toLocaleString("es-CO")} COP / ${tipoTexto}</strong></p>
+      <a href="#" class="btn-alquilar">ALQUILA YA</a>
+    </div>
+  `;
+}
+
+async function load() {
+    const q = query(collection(db, "listings"), orderBy("createdAt", "desc"), limit(12));
+    const snap = await getDocs(q);
+    let html = "";
+    snap.forEach(doc => html += cardHtml(doc.data()));
+    grid.innerHTML = html || "<p>No hay publicaciones aún.</p>";
+  }
+
+  load();
   </script>
+
+  
+
 </body>
 </html>

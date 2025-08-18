@@ -1,50 +1,37 @@
-import {
-  auth,
-  updateProfile,
-  onAuthStateChanged,
-  storage,
-  ref,
-  uploadBytes,
-  getDownloadURL
-} from "./Firebase.js";
+import { auth, updateProfile, storage, ref, uploadBytes, getDownloadURL } from "./firebase.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("perfil-form");
-  const nombreInput = document.getElementById("nombre");
-  const fotoInput = document.getElementById("foto");
+const form = document.getElementById("perfil-form");
+const nombreInput = document.getElementById("nombre");
+const fotoInput = document.getElementById("foto");
 
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      nombreInput.value = user.displayName || "";
-    } else {
-      window.location.href = "login.html"; 
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const user = auth.currentUser;
+
+  if (!user) {
+    alert("Debes iniciar sesión primero");
+    return;
+  }
+
+  try {
+    let photoURL = user.photoURL; // por defecto la que ya tenga
+
+    if (fotoInput.files.length > 0) {
+      const archivo = fotoInput.files[0];
+      const storageRef = ref(storage, `perfiles/${user.uid}/${archivo.name}`);
+      await uploadBytes(storageRef, archivo); // sube a Firebase Storage
+      photoURL = await getDownloadURL(storageRef); // obtiene la URL pública
     }
-  });
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    await updateProfile(user, {
+      displayName: nombreInput.value || user.displayName,
+      photoURL
+    });
 
-    const nombre = nombreInput.value;
-    const archivo = fotoInput.files[0];
-    let nuevaURL = null;
-
-    try {
-      if (archivo) {
-        const ruta = `fotos-perfil/${auth.currentUser.uid}/${archivo.name}`;
-        const storageRef = ref(storage, ruta);
-        await uploadBytes(storageRef, archivo);
-        nuevaURL = await getDownloadURL(storageRef);
-      }
-
-      await updateProfile(auth.currentUser, {
-        displayName: nombre,
-        photoURL: nuevaURL || auth.currentUser.photoURL
-      });
-
-      alert("Perfil actualizado correctamente");
-      window.location.reload();
-    } catch (error) {
-      alert("Error al actualizar perfil: " + error.message);
-    }
-  });
+    alert("Perfil actualizado ✅");
+    window.location.href = "index.html"; // redirige al inicio
+  } catch (err) {
+    console.error("Error al actualizar perfil:", err);
+    alert("Error: " + err.message);
+  }
 });

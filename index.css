@@ -925,3 +925,163 @@ body {
       cursor: pointer;
     }
 
+.lista-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.producto-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s, ease-in-out;
+}
+
+.producto-card:hover {
+    transform: scale(1.02);
+}
+
+.producto-imag {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.filtros {
+    margin: 10px 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 25 px;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: orange;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+}
+
+.btn-publicar {
+    width: 100%;
+    padding: 12px;
+    background: orange;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.btn-publicar:hover {
+    background: rgb(202, 133, 0);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.filtros {
+    margin-bottom: 20px;
+}
+
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.producto-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.producto-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.producto-card h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.productos-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+.btn-alquilar {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    background: #ffd600;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-alquilar:hover {
+    background: #ffb300;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: orange;
+    text-decoration: none;
+}
+
+.logo:hover,
+.login-title:hover {
+    color: rgb(202, 133, 0);
+}
+
+.producto-precio {
+    font-size: 16px;
+    font-weight: bold;
+    color: orange;
+    margin: 8px 0;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicar producto - Rentaplus</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header class="nav-header" id="main-header">
+    <div class="nav-container">
+      <p class="logo"><a href="index.html">Rentaplus</a></p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="form-container">
+      <h2>📦 Publicar producto en alquiler</h2>
+
+      <form id="publicar-form">
+        <div class="form-group">
+          <label for="titulo">Nombre del producto:</label>
+          <input type="text" id="titulo" required>
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="ubicacion">Ubicación:</label>
+          <input type="text" id="ubicacion" required>
+        </div>
+
+        <div class="form-group">
+          <label for="precio">Precio (COP):</label>
+          <input type="number" id="precio" required min="1000">
+        </div>
+
+        <div class="form-group">
+          <label for="tipo">Alquiler por:</label>
+          <select id="tipo" required>
+            <option value="dia">Día</option>
+            <option value="semana">Semana</option>
+            <option value="mes">Mes</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="foto">Foto del producto:</label>
+          <input type="file" id="foto" accept="image/*" required>
+        </div>
+
+        <button type="submit" class="btn-publicar">📤 Publicar producto</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; Monovas company 2025</p>
+    </div>
+  </footer>
+
+  <script type="module" src="publicar.js"></script>
+</body>
+</html>

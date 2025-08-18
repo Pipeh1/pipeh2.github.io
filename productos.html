@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos en alquiler - Rentaplus</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header class="nav-header" id="main-header">
+    <div class="nav-container">
+      <p class="logo"><a href="index.html">Rentaplus</a></p>
+    </div>
+  </header>
+
+  <main class="productos-container">
+    <h2 class="titulo-seccion">Productos disponibles para alquilar</h2>
+
+    <div class="filtros">
+      <label for="filtro-tipo">Filtrar por:</label>
+      <select id="filtro-tipo">
+        <option value="todos">Todos</option>
+        <option value="dia">Día</option>
+        <option value="semana">Semana</option>
+        <option value="mes">Mes</option>
+      </select>
+    </div>
+
+    <div id="productos-lista" class="productos-grid">
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; Monovas company 2025</p>
+    </div>
+  </footer>
+
+  <script type="module" src="productos.js"></script>
+</body>
+</html>
+
