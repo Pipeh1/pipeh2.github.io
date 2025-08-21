@@ -1,4 +1,5 @@
 console.log("✅ publicar.js cargado correctamente");
+
 import { db, storage, ref, uploadBytes, getDownloadURL, collection, addDoc, serverTimestamp } from "./Firebase.js";
 import { auth } from "./Firebase.js";
 
@@ -23,11 +24,24 @@ form.addEventListener("submit", async (e) => {
   }
 
   try {
+    if (!fotoInput.files || fotoInput.files.length === 0) {
+      alert("Debes seleccionar una foto del producto");
+      return;
+    }
+
     const archivo = fotoInput.files[0];
     console.log("📸 Archivo seleccionado:", archivo);
-    
-    const storageRef = ref(storage, `productos/${user.uid}/${archivo.name}`);
-    await uploadBytes(storageRef, archivo);
+
+    const storageRef = ref(storage, `productos/${user.uid}/${Date.now()}_${archivo.name}`);
+
+    try {
+      await uploadBytes(storageRef, archivo);
+    } catch (err) {
+      console.error("❌ Error subiendo archivo a Storage:", err);
+      alert("Error al subir la foto. Revisa tu conexión e intenta de nuevo.");
+      return;
+    }
+
     const fotoURL = await getDownloadURL(storageRef);
     console.log("✅ Foto subida correctamente:", fotoURL);
 
@@ -35,7 +49,7 @@ form.addEventListener("submit", async (e) => {
       titulo: document.getElementById("titulo").value,
       descripcion: document.getElementById("descripcion").value,
       ubicacion: document.getElementById("ubicacion").value,
-      precio: document.getElementById("precio").value,
+      precio: Number(document.getElementById("precio").value),
       tipo: document.getElementById("tipo").value,
       foto: fotoURL,
       userId: user.uid,
@@ -46,7 +60,7 @@ form.addEventListener("submit", async (e) => {
     alert("Producto publicado ✅");
     form.reset();
   } catch (err) {
-    console.error("Error publicando:", err);
+    console.error("❌ Error publicando:", err);
     alert("Error: " + err.message);
   }
 });

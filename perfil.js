@@ -1,4 +1,4 @@
-import { auth, updateProfile, storage, ref, uploadBytes, getDownloadURL } from "./firebase.js";
+import { auth, updateProfile, storage, ref, uploadBytes, getDownloadURL } from "./Firebase.js";
 
 const form = document.getElementById("perfil-form");
 const nombreInput = document.getElementById("nombre");
