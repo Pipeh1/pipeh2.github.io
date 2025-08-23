@@ -11,12 +11,15 @@ async function cargarProductos() {
       return;
     }
 
+    productosLista.innerHTML = ""; 
+
     querySnapshot.forEach((doc) => {
       const data = doc.data();
+      console.log("📸 URL de la imagen:", data.foto); 
 
       productosLista.innerHTML += `
         <div class="productos-card">
-          <img src="${data.foto}" alt="${data.titulo}">
+          <img src="${data.foto}" alt="${data.titulo}" />
           <h3>${data.titulo}</h3>
           <p>${data.precio} COP / ${data.tipo}</p>
           <button onclick="location.href='producto.html?id=${doc.id}'">Ver más</button>
@@ -24,8 +27,8 @@ async function cargarProductos() {
       `;
     });
   } catch (err) {
-    console.error("⚠️ Error cargando productos:", err);
-    productosLista.innerHTML = "<p>⚠️ Error al cargar productos</p>";
+    console.error("❌ Error cargando productos:", err);
+    productosLista.innerHTML = "<p>⚠️ Error cargando productos.</p>";
   }
 }
 
