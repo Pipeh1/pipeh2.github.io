@@ -30,13 +30,14 @@ import {
 
 const firebaseConfig = {
   apiKey: "AIzaSyC1illG7VbYLvW81Y-IMwT__67G7bdKeHE",
-  authDomain: "rentaplus-5fe77.firebaseapp.com",
-  projectId: "rentaplus-5fe77",
-  storageBucket: "rentaplus-5fe77.firebasestorage.app", 
+  authDomain: "rentaplus-5fe77.firebaseapp.com",   // 👈 minúsculas
+  projectId: "rentaplus-5fe77",                     // 👈 minúsculas
+  storageBucket: "rentaplus-5fe77.appspot.com",     // 👈 minúsculas
   messagingSenderId: "373936369407",
   appId: "1:373936369407:web:44593a6343a5d8853ca6ca",
   measurementId: "G-PBGK43T70T"
 };
+
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
