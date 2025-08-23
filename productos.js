@@ -1,40 +1,31 @@
-import { db } from "./Firebase.js";
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { db, collection, getDocs } from "./Firebase.js";
 
-const lista = document.getElementById("productos-lista");
+const productosLista = document.getElementById("productos-lista");
 
 async function cargarProductos() {
   try {
-    console.log("📡 Consultando productos en Firestore...");
     const querySnapshot = await getDocs(collection(db, "productos"));
 
     if (querySnapshot.empty) {
-      console.log("⚠️ No hay productos publicados.");
-      lista.innerHTML = "<p>No hay productos publicados aún.</p>";
+      productosLista.innerHTML = "<p>⚠️ No hay productos publicados.</p>";
       return;
     }
 
-    lista.innerHTML = ""; 
     querySnapshot.forEach((doc) => {
-      const producto = doc.data();
-      console.log("✅ Producto encontrado:", producto);
+      const data = doc.data();
 
-      const card = document.createElement("div");
-      card.className = "productos-card";
-
-      card.innerHTML = `
-        <img src="${producto.fotoURL}" alt="${producto.titulo}">
-        <h3>${producto.titulo}</h3>
-        <p>${producto.descripcion}</p>
-        <p><strong>Ubicación:</strong> ${producto.ubicacion}</p>
-        <p><strong>Precio:</strong> $${producto.precio} COP (${producto.tipo})</p>
-        <button class="btn-alquilar">Alquilar</button>
+      productosLista.innerHTML += `
+        <div class="productos-card">
+          <img src="${data.foto}" alt="${data.titulo}">
+          <h3>${data.titulo}</h3>
+          <p>${data.precio} COP / ${data.tipo}</p>
+          <button onclick="location.href='producto.html?id=${doc.id}'">Ver más</button>
+        </div>
       `;
-      lista.appendChild(card);
     });
   } catch (err) {
-    console.error("❌ Error al cargar productos:", err);
-    lista.innerHTML = "<p>Error al cargar productos.</p>";
+    console.error("⚠️ Error cargando productos:", err);
+    productosLista.innerHTML = "<p>⚠️ Error al cargar productos</p>";
   }
 }
 
