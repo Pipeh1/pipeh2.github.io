@@ -30,9 +30,9 @@ import {
 
 const firebaseConfig = {
   apiKey: "AIzaSyC1illG7VbYLvW81Y-IMwT__67G7bdKeHE",
-  authDomain: "Rentaplus-5fe77.firebaseapp.com",
-  projectId: "Rentaplus-5fe77",
-  storageBucket: "Rentaplus-5fe77.appspot.com",
+  authDomain: "rentaplus-5fe77.firebaseapp.com",
+  projectId: "rentaplus-5fe77",
+  storageBucket: "rentaplus-5fe77.firebasestorage.app", 
   messagingSenderId: "373936369407",
   appId: "1:373936369407:web:44593a6343a5d8853ca6ca",
   measurementId: "G-PBGK43T70T"
@@ -40,7 +40,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const storage = getStorage(app);
+const storage = getStorage(app, "gs://rentaplus-5fe77.firebasestorage.app"); 
 const db = getFirestore(app);
 
 const contenedorUsuario = document.getElementById("usuario-menu");
