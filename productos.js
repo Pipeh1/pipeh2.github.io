@@ -1,36 +1,51 @@
 import { db, collection, getDocs } from "./Firebase.js";
 
 const productosLista = document.getElementById("productos-lista");
+const filtroTipo = document.getElementById("filtro-tipo");
 
 async function cargarProductos() {
   try {
-    const snapshot = await getDocs(collection(db, "productos"));
+    productosLista.innerHTML = "<p>Cargando productos...</p>";
+    const querySnapshot = await getDocs(collection(db, "productos"));
 
-    if (snapshot.empty) {
-      productosLista.innerHTML = "<p>No hay productos publicados aún.</p>";
+    if (querySnapshot.empty) {
+      productosLista.innerHTML = "<p>⚠️ No hay productos publicados.</p>";
       return;
     }
 
-    productosLista.innerHTML = ""; 
+    let productos = [];
+    querySnapshot.forEach((doc) => {
+      productos.push({ id: doc.id, ...doc.data() });
+    });
 
-    snapshot.forEach((doc) => {
-      const data = doc.data();
+    mostrarProductos(productos);
 
-      productosLista.innerHTML += `
-        <div class="productos-card">
-          <img src="${data.foto}" alt="${data.titulo}">
-          <h3>${data.titulo}</h3>
-          <p>${data.precio} COP / ${data.tipo}</p>
-          <button onclick="location.href='producto.html?id=${doc.id}'">
-            Ver más
-          </button>
-        </div>
-      `;
+    filtroTipo.addEventListener("change", () => {
+      const tipo = filtroTipo.value;
+      if (tipo === "todos") {
+        mostrarProductos(productos);
+      } else {
+        mostrarProductos(productos.filter((p) => p.tipo === tipo));
+      }
     });
   } catch (err) {
     console.error("⚠️ Error cargando productos:", err);
-    productosLista.innerHTML = "<p>Error al cargar productos.</p>";
+    productosLista.innerHTML = "<p>⚠️ Error al cargar productos.</p>";
   }
+}
+
+function mostrarProductos(lista) {
+  productosLista.innerHTML = "";
+
+  lista.forEach((data) => {
+    productosLista.innerHTML += `
+      <div class="productos-card" onclick="location.href='producto.html?id=${data.id}'">
+        <img src="${data.foto}" alt="${data.titulo}">
+        <p>$${data.precio} COP / ${data.tipo}</p>
+        <h3>${data.titulo}</h3>
+      </div>
+    `;
+  });
 }
 
 cargarProductos();

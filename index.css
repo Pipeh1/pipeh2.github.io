@@ -1246,3 +1246,75 @@ body {
 .btn-alquilar:hover {
   background: rgb(202, 133, 0);
 }
+
+@media (max-width: 768px) {
+  .producto-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .producto-info {
+    margin-top: 20px;
+  }
+
+  .producto-imagen img {
+    max-height: 300px;
+  }
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.productos-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productos-card:hover {
+  transform: translateY(-5px);
+}
+
+.productos-card img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover; 
+  border-bottom: 1px solid #eee;
+}
+
+.productos-card h3 {
+  font-size: 1.1rem;
+  margin: 10px 0 5px;
+  text-align: center;
+}
+
+.productos-card p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.productos-card button {
+  background: orange;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.productos-card button:hover {
+  background: rgb(202, 133, 0);
+}
