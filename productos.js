@@ -1,29 +1,29 @@
-import { db, collection, getDocs } from "./Firebase.js";
+import { db, collection, getDocs, query, orderBy } from "./Firebase.js";
 
 const productosLista = document.getElementById("productos-lista");
 
 async function cargarProductos() {
   try {
-    const querySnapshot = await getDocs(collection(db, "productos"));
+    const q = query(collection(db, "productos"), orderBy("creado", "desc"));
+    const snap = await getDocs(q);
+
     productosLista.innerHTML = "";
 
-    querySnapshot.forEach((doc) => {
+    snap.forEach((doc) => {
       const data = doc.data();
-
       productosLista.innerHTML += `
         <div class="producto-item" onclick="location.href='producto.html?id=${doc.id}'">
-          <div class="producto-img">
-            <img src="${data.foto}" alt="${data.titulo}">
-          </div>
-          <div class="producto-info">
-            <h3>${data.titulo}</h3>
-            <p class="producto-precio">$${Number(data.precio).toLocaleString("es-CO")} COP</p>
-            <p class="producto-extra">3 cuotas sin interés</p>
-            <p class="producto-envio">Llega gratis mañana</p>
+          <img class="producto-img" src="${data.foto}" alt="${data.titulo}">
+          <div class="producto-detalles">
+            <h2 class="producto-nombre">${data.titulo}</h2>
+            <p class="producto-precio">$${data.precio} COP / ${data.tipo}</p>
+            <p class="producto-ubicacion">📍 ${data.ubicacion}</p>
+            <p class="producto-descripcion">${data.descripcion.substring(0, 80)}...</p>
           </div>
         </div>
       `;
     });
+
   } catch (err) {
     console.error("❌ Error cargando productos:", err);
   }
