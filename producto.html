@@ -4,14 +4,88 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Producto - Rentaplus</title>
-  <link rel="stylesheet" href="index.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+
+    .producto-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: flex-start;
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .producto-imagen img {
+      width: 100%;
+      max-width: 350px; /* 🔹 evita que quede gigante */
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .producto-info h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .producto-precio {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ff6f00;
+      margin: 15px 0;
+    }
+
+    .producto-ubicacion {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .producto-descripcion {
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .btn-alquilar {
+      padding: 10px 16px;
+      font-size: 1rem;
+      background: orange;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-alquilar:hover {
+      background: rgba(255, 166, 0, 0.89);
+    }
+
+    .btn-eliminar {
+      padding: 8px 14px;
+      font-size: 0.95rem;
+      border: 1px solid #ff6f00;
+      background: none;
+      color: #ff6f00;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .btn-eliminar:hover {
+      background: #ffe0cc;
+    }
+  </style>
 </head>
 <body>
-  <header class="nav-header" id="main-header">
-    <div class="nav-container">
-      <p class="logo"><a href="index.html">Rentaplus</a></p>
-    </div>
-  </header>
 
   <main class="producto-container">
     <div class="producto-imagen">
@@ -23,17 +97,10 @@
       <p class="producto-precio" id="producto-precio"></p>
       <p class="producto-ubicacion" id="producto-ubicacion"></p>
       <p class="producto-descripcion" id="producto-descripcion"></p>
-
       <button class="btn-alquilar">Alquilar ahora</button>
-      <button id="eliminar-btn" class="btn-eliminar" style="display:none;">Eliminar producto</button>
+      <button class="btn-eliminar" id="eliminar-btn">Eliminar producto</button>
     </div>
   </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; Monovas company 2025</p>
-    </div>
-  </footer>
 
   <script type="module" src="producto.js"></script>
 </body>
