@@ -1098,3 +1098,159 @@ body {
     border: none;
     font-weight: bold;
 }
+
+.producto-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columnas */
+  gap: 40px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.producto-imagen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.producto-imagen img {
+  max-width: 100%;
+  max-height: 450px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.producto-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.producto-info h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.producto-precio {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff6600; 
+  margin: 10px 0;
+}
+
+.producto-ubicacion {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.producto-descripcion {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.btn-alquilar {
+  background: #ff6600;
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: fit-content;
+}
+
+.btn-alquilar:hover {
+  background: #e65c00;
+}
+
+/* 📱 Responsivo */
+@media (max-width: 768px) {
+  .producto-container {
+    grid-template-columns: 1fr; /* se apila */
+  }
+
+  .producto-imagen img {
+    max-height: 350px;
+  }
+}
+.producto-container {
+  display: flex;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.producto-imagen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.producto-imagen img {
+  max-width: 100%;
+  max-height: 400px; 
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.producto-info {
+  flex: 1;
+}
+
+.producto-info h1 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.producto-precio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: orange;
+  margin-bottom: 10px;
+}
+
+.producto-ubicacion {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.producto-descripcion {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.btn-alquilar {
+  padding: 12px 20px;
+  background: orange;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-alquilar:hover {
+  background: rgb(202, 133, 0);
+}
