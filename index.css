@@ -1427,18 +1427,22 @@ body {
   border-radius: 6px;
 }
 
-.filtros button {
-  background: none;            
-  border: none;                
-  color: #ff8000;              
+.filtros button,
+.filtros input[type="button"],
+.filtros a {
+  background: none;
+  border: none;
+  color: #ff8000;          
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  padding: 6px 12px;           
+  padding: 6px 12px;
   border-radius: 6px;
   transition: color 0.2s ease;
 }
 
-.filtros button:hover {
-  color: #cc6600;              
+.filtros button:hover,
+.filtros input[type="button"]:hover,
+.filtros a:hover {
+  color: #cc6600;          
 }
