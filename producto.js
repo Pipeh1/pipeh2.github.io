@@ -1,4 +1,5 @@
-import { db, doc, getDoc, deleteDoc, auth } from "./Firebase.js";
+import { db, auth, collection, addDoc, getDocs, serverTimestamp } from "./Firebase.js";
+
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
@@ -58,29 +59,29 @@ const calificacionInput = document.getElementById("calificacion");
 const listaComentarios = document.getElementById("lista-comentarios");
 
 if (estrellasDiv) {
-  estrellasDiv.innerHTML = "";
+  estrellasDiv.innerHTML = ""; 
   for (let i = 1; i <= 5; i++) {
-    const span = document.createElement("span");
-    span.textContent = "☆";
-    span.dataset.valor = i;
-    span.style.cursor = "pointer";
-    span.style.fontSize = "22px";
-    estrellasDiv.appendChild(span);
+    const s = document.createElement("span");
+    s.textContent = "☆"; 
+    s.dataset.valor = i;
+    s.style.cursor = "pointer";
+    s.style.fontSize = "24px";
+    s.style.marginRight = "4px";
+    estrellasDiv.appendChild(s);
   }
 
   estrellasDiv.addEventListener("click", (e) => {
     if (e.target.tagName === "SPAN") {
-      const puntuacion = e.target.dataset.valor;
-      calificacionInput.value = puntuacion;
+      const val = parseInt(e.target.dataset.valor);
+      calificacionInput.value = val;
 
-      [...estrellasDiv.children].forEach((estrella, idx) => {
-        estrella.textContent = idx < puntuacion ? "★" : "☆";
-        estrella.style.color = idx < puntuacion ? "orange" : "gray";
+      [...estrellasDiv.children].forEach((star, idx) => {
+        star.textContent = idx < val ? "★" : "☆";
+        star.style.color = idx < val ? "orange" : "#ccc";
       });
     }
   });
 }
-
 
 if (comentarioForm) {
   comentarioForm.addEventListener("submit", async (e) => {

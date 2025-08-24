@@ -1588,16 +1588,15 @@ body {
 }
 
 .comentarios button {
-  padding: 6px 14px;
+  padding: 6px 12px;
   font-size: 14px;
-  border: none;
-  background: #ff8000;
+  background: orange;
   color: white;
-  border-radius: 6px;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
   margin-top: 8px;
 }
-
 .comentarios button:hover {
   background: #e76f00;
 }

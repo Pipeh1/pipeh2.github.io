@@ -111,23 +111,19 @@
       <button class="btn-alquilar">Alquilar ahora</button>
       <button class="btn-eliminar" id="eliminar-btn">Eliminar producto</button>
     </div>
-    <section class="comentarios">
-  <h2>Reseñas</h2>
 
+<section class="comentarios">
+  <h2>Reseñas</h2>
   <form id="comentario-form">
     <label for="estrellas">Calificación:</label>
-    <div class="estrellas" id="estrellas">
-      ★★★★★
-    </div>
+    <div class="estrellas" id="estrellas">★★★★★</div>
     <input type="hidden" id="calificacion" value="5">
-    
-    <textarea id="comentario-texto" placeholder="Escribe tu comentario..." required></textarea>
+    <textarea id="comentario-texto"></textarea>
     <button type="submit">Enviar</button>
   </form>
-
   <div id="lista-comentarios"></div>
 </section>
-
+ 
   </main>
 
   <script type="module" src="producto.js"></script>
