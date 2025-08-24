@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Productos en alquiler - Rentaplus</title>
+  <title>Detalle del producto - Rentaplus</title>
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -13,9 +13,18 @@
     </div>
   </header>
 
-  <main>
-    <h2>Productos disponibles</h2>
-    <div id="productos-lista" class="productos-grid">
+  <main class="producto-detalle">
+    <div class="detalle-card">
+      <img id="producto-foto" alt="Producto" class="detalle-imagen">
+
+      <div class="detalle-info">
+        <h2 id="producto-titulo"></h2>
+        <p id="producto-ubicacion"></p>
+        <h3 id="producto-precio"></h3>
+        <p id="producto-descripcion"></p>
+
+        <button class="btn-alquilar">Alquilar ahora</button>
+      </div>
     </div>
   </main>
 
@@ -25,6 +34,6 @@
     </div>
   </footer>
 
-  <script type="module" src="productos.js"></script>
+  <script type="module" src="producto.js"></script>
 </body>
 </html>
