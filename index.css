@@ -1600,3 +1600,25 @@ body {
 .comentarios button:hover {
   background: #e76f00;
 }
+
+.producto-imagen img#producto-foto {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  background: #f6f7f8;
+  border-radius: 12px;
+}
+
+.btn-eliminar {
+  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: 14px;
+  background: #fff2f2;
+  color: #c62828;
+  border: 1px solid #ffcccc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-eliminar:hover { background: #ffe6e6; }
+
+.comentarios .star { font-size: 22px; }
