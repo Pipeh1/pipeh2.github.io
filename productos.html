@@ -3,39 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Productos en alquiler - Rentaplus</title>
+  <title>Productos - Rentaplus</title>
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <header class="nav-header" id="main-header">
-    <div class="nav-container">
-      <p class="logo"><a href="index.html">Rentaplus</a></p>
-    </div>
+  <header>
+    <h1 class="logo">Rentaplus</h1>
   </header>
 
-  <main class="productos-container">
-    <h2>Productos disponibles para alquilar</h2>
+  <main>
+    <h1 class="productos-titulo">Productos en alquiler</h1>
 
-    <div class="filtros">
-      <label for="filtro-tipo">Filtrar por:</label>
-      <select id="filtro-tipo">
-        <option value="todos">Todos</option>
-        <option value="dia">Día</option>
-        <option value="semana">Semana</option>
-        <option value="mes">Mes</option>
-      </select>
-    </div>
+    <section class="filtros">
+      <label>
+        Tipo:
+        <select id="filtro-tipo">
+          <option value="">Todos</option>
+          <option value="día">Por día</option>
+          <option value="semana">Por semana</option>
+          <option value="mes">Por mes</option>
+        </select>
+      </label>
+
+      <label>
+        Ubicación:
+        <input type="text" id="filtro-ubicacion" placeholder="Ej: Medellín">
+      </label>
+
+      <label>
+        Precio máximo:
+        <input type="number" id="filtro-precio" placeholder="Ej: 50000">
+      </label>
+
+      <button id="btn-filtrar">Filtrar</button>
+      <button id="btn-limpiar">Limpiar</button>
+    </section>
 
     <div id="productos-lista" class="productos-lista"></div>
   </main>
 
   <footer>
-    <div class="container">
-      <p>&copy; Monovas company 2025</p>
-    </div>
+    <p>© Monovas company 2025</p>
   </footer>
 
   <script type="module" src="productos.js"></script>
 </body>
 </html>
+
 
