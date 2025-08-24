@@ -1344,21 +1344,23 @@ body {
 }
 
 .producto-img {
-  flex: 0 0 180px;
-  height: 180px;
+  flex: 0 0 160px;   
+  height: 160px;     
   background: #fafafa;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 16px;
+  overflow: hidden; /
 }
 
 .producto-img img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  object-fit: contain; 
 }
+
 
 .producto-info {
   flex: 1;
