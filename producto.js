@@ -49,3 +49,74 @@ async function cargarProducto(id) {
   }
 }
 
+import { collection, addDoc, getDocs, serverTimestamp } from "./Firebase.js";
+
+const comentarioForm = document.getElementById("comentario-form");
+const comentarioTexto = document.getElementById("comentario-texto");
+const estrellasDiv = document.getElementById("estrellas");
+const calificacionInput = document.getElementById("calificacion");
+const listaComentarios = document.getElementById("lista-comentarios");
+
+if (estrellasDiv) {
+  estrellasDiv.innerHTML = "★★★★★";
+  estrellasDiv.addEventListener("click", (e) => {
+    if (e.target.textContent === "★") {
+      const estrellas = Array.from(estrellasDiv.textContent);
+      const index = estrellasDiv.innerHTML.indexOf(e.target.textContent, e.target.dataset.index);
+      const puntuacion = estrellas.indexOf("★", index) + 1 || 5;
+      calificacionInput.value = puntuacion;
+      estrellasDiv.innerHTML = "★".repeat(puntuacion) + "☆".repeat(5 - puntuacion);
+    }
+  });
+}
+
+if (comentarioForm) {
+  comentarioForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    try {
+      await addDoc(collection(db, "productos", id, "comentarios"), {
+        texto: comentarioTexto.value,
+        estrellas: parseInt(calificacionInput.value),
+        creado: serverTimestamp()
+      });
+
+      comentarioTexto.value = "";
+      cargarComentarios(id);
+    } catch (err) {
+      console.error("⚠️ Error guardando comentario:", err);
+      alert("Error guardando comentario: " + err.message);
+    }
+  });
+}
+
+async function cargarComentarios(productoId) {
+  listaComentarios.innerHTML = "<p>Cargando reseñas...</p>";
+
+  try {
+    const snap = await getDocs(collection(db, "productos", productoId, "comentarios"));
+    listaComentarios.innerHTML = "";
+
+    if (snap.empty) {
+      listaComentarios.innerHTML = "<p>Sin comentarios aún.</p>";
+      return;
+    }
+
+    snap.forEach((doc) => {
+      const c = doc.data();
+      const div = document.createElement("div");
+      div.classList.add("comentario");
+      div.innerHTML = `
+        <p>${"★".repeat(c.estrellas)}${"☆".repeat(5 - c.estrellas)}</p>
+        <p>${c.texto}</p>
+        <hr>
+      `;
+      listaComentarios.appendChild(div);
+    });
+  } catch (err) {
+    console.error("⚠️ Error cargando comentarios:", err);
+    listaComentarios.innerHTML = "<p>Error cargando comentarios.</p>";
+  }
+}
+
+cargarComentarios(id);
