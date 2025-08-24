@@ -1586,3 +1586,18 @@ body {
 .comentario strong {
   color: orange;
 }
+
+.comentarios button {
+  padding: 6px 14px;
+  font-size: 14px;
+  border: none;
+  background: #ff8000;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.comentarios button:hover {
+  background: #e76f00;
+}

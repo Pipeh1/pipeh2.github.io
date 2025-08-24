@@ -58,17 +58,29 @@ const calificacionInput = document.getElementById("calificacion");
 const listaComentarios = document.getElementById("lista-comentarios");
 
 if (estrellasDiv) {
-  estrellasDiv.innerHTML = "★★★★★";
+  estrellasDiv.innerHTML = "";
+  for (let i = 1; i <= 5; i++) {
+    const span = document.createElement("span");
+    span.textContent = "☆";
+    span.dataset.valor = i;
+    span.style.cursor = "pointer";
+    span.style.fontSize = "22px";
+    estrellasDiv.appendChild(span);
+  }
+
   estrellasDiv.addEventListener("click", (e) => {
-    if (e.target.textContent === "★") {
-      const estrellas = Array.from(estrellasDiv.textContent);
-      const index = estrellasDiv.innerHTML.indexOf(e.target.textContent, e.target.dataset.index);
-      const puntuacion = estrellas.indexOf("★", index) + 1 || 5;
+    if (e.target.tagName === "SPAN") {
+      const puntuacion = e.target.dataset.valor;
       calificacionInput.value = puntuacion;
-      estrellasDiv.innerHTML = "★".repeat(puntuacion) + "☆".repeat(5 - puntuacion);
+
+      [...estrellasDiv.children].forEach((estrella, idx) => {
+        estrella.textContent = idx < puntuacion ? "★" : "☆";
+        estrella.style.color = idx < puntuacion ? "orange" : "gray";
+      });
     }
   });
 }
+
 
 if (comentarioForm) {
   comentarioForm.addEventListener("submit", async (e) => {
