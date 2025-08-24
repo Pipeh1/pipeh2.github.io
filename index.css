@@ -1184,6 +1184,7 @@ body {
     max-height: 350px;
   }
 }
+
 .producto-container {
   display: flex;
   gap: 30px;
@@ -1204,7 +1205,7 @@ body {
 
 .producto-imagen img {
   max-width: 100%;
-  max-height: 400px; 
+  max-height: 400px; /* 🔹 aquí limitamos la altura */
   object-fit: contain;
   border-radius: 10px;
 }
@@ -1213,42 +1214,33 @@ body {
   flex: 1;
 }
 
-.producto-info h1 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
-  color: #333;
-}
-
 .producto-precio {
-  font-size: 1.5rem;
+  font-size: 20px;
   font-weight: bold;
   color: orange;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .producto-ubicacion {
-  font-size: 1rem;
+  font-size: 14px;
   color: #777;
-  margin-bottom: 15px;
 }
 
 .producto-descripcion {
-  font-size: 1rem;
+  margin: 15px 0;
+  font-size: 16px;
   line-height: 1.5;
-  color: #444;
-  margin-bottom: 20px;
 }
 
 .btn-alquilar {
-  padding: 12px 20px;
+  padding: 12px;
   background: orange;
-  color: #fff;
   border: none;
-  font-size: 1rem;
-  font-weight: bold;
   border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: 0.2s;
 }
 
 .btn-alquilar:hover {
