@@ -190,4 +190,3 @@ cargarProducto().catch((e) => {
   console.error("Error general:", e);
   alert("Error al cargar el producto");
 });
-
