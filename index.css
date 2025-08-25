@@ -1622,3 +1622,29 @@ body {
 .btn-eliminar:hover { background: #ffe6e6; }
 
 .comentarios .star { font-size: 22px; }
+
+.promedio-estrellas {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #ff9800;
+  font-weight: bold;
+}
+
+.comentario {
+  border-bottom: 1px solid #ddd;
+  padding: 8px 0;
+}
+
+.btn-editar, .btn-borrar {
+  font-size: 0.8rem;
+  margin-right: 5px;
+  border: none;
+  background: none;
+  color: #ff9800;
+  cursor: pointer;
+}
+
+.btn-editar:hover, .btn-borrar:hover {
+  color: #e68900;
+  text-decoration: underline;
+}
