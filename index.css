@@ -1622,3 +1622,10 @@ body {
 .btn-eliminar:hover { background: #ffe6e6; }
 
 .comentarios .star { font-size: 22px; }
+
+.producto-rating {
+  font-size: 14px;
+  color: #ff9800; 
+  font-weight: bold;
+  margin-top: 5px;
+}

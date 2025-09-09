@@ -1,7 +1,7 @@
 import { db, collection, getDocs, query, orderBy } from "./Firebase.js";
 
 const productosLista = document.getElementById("productos-lista");
-let productosCache = []; 
+let productosCache = [];
 
 async function cargarProductos() {
   try {
@@ -9,9 +9,23 @@ async function cargarProductos() {
     const snap = await getDocs(q);
 
     productosCache = [];
-    snap.forEach((doc) => {
-      productosCache.push({ id: doc.id, ...doc.data() });
-    });
+    for (let docSnap of snap.docs) {
+      let data = docSnap.data();
+      data.id = docSnap.id;
+
+      // 🔹 Obtener comentarios para calcular promedio
+      const comentariosSnap = await getDocs(collection(db, `productos/${docSnap.id}/comentarios`));
+      let total = 0, count = 0;
+      comentariosSnap.forEach(c => {
+        if (c.data().rating) {
+          total += c.data().rating;
+          count++;
+        }
+      });
+      data.promedio = count > 0 ? (total / count).toFixed(1) : null;
+
+      productosCache.push(data);
+    }
 
     mostrarProductos(productosCache);
   } catch (err) {
@@ -35,6 +49,11 @@ function mostrarProductos(lista) {
           <p class="producto-precio">$${data.precio} COP / ${data.tipo}</p>
           <p class="producto-ubicacion">📍 ${data.ubicacion}</p>
           <p class="producto-descripcion">${data.descripcion.substring(0, 80)}...</p>
+          ${
+            data.promedio 
+              ? `<p class="producto-rating">⭐ ${data.promedio} / 5</p>` 
+              : `<p class="producto-rating">Sin calificaciones</p>`
+          }
         </div>
       </div>
     `;
