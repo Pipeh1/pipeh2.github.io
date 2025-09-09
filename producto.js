@@ -1,111 +1,161 @@
-import { 
-  db, auth, doc, getDoc, collection, addDoc, getDocs, serverTimestamp, deleteDoc 
+import {
+  auth,
+  db,
+  doc,
+  getDoc,
+  collection,
+  query,
+  orderBy,
+  getDocs,
+  addDoc,
+  serverTimestamp,
 } from "./Firebase.js";
 
+const $ = (sel) => document.querySelector(sel);
+
+const imgEl = $("#producto-foto");
+const tituloEl = $("#producto-titulo");
+const precioEl = $("#producto-precio");
+const ubicacionEl = $("#producto-ubicacion");
+const descripcionEl = $("#producto-descripcion");
+
+const promedioEl = $("#promedio-estrellas");
+const listaComentariosEl = $("#comentarios-lista");
+const formComentario = $("#comentario-form");
+const selCalificacion = $("#comentario-calificacion");
+const txtComentario = $("#comentario-texto");
+
 const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
+const productId = params.get("id");
 
-const listaComentarios = document.getElementById("comentarios-lista");
-const form = document.getElementById("comentario-form");
-const promedioEstrellas = document.getElementById("promedio-estrellas");
-
-async function cargarProducto(id) {
-  try {
-    const ref = doc(db, "productos", id);
-    const snap = await getDoc(ref);
-
-    if (snap.exists()) {
-      const data = snap.data();
-      document.getElementById("producto-foto").src = data.foto;
-      document.getElementById("producto-titulo").textContent = data.titulo;
-      document.getElementById("producto-ubicacion").textContent = "📍 " + data.ubicacion;
-      document.getElementById("producto-precio").textContent = `$${data.precio} COP / ${data.tipo}`;
-      document.getElementById("producto-descripcion").textContent = data.descripcion;
-      document.title = data.titulo + " - Rentaplus";
-    } else {
-      document.body.innerHTML = "<h2>❌ Producto no encontrado</h2>";
-    }
-  } catch (err) {
-    console.error("⚠️ Error cargando producto:", err);
-  }
+function starsBar(n) {
+  const full = Math.round(n); // si prefieres sin redondeo: Math.floor(n)
+  const fullStars = "★".repeat(Math.min(full, 5));
+  const emptyStars = "☆".repeat(Math.max(5 - full, 0));
+  return fullStars + emptyStars;
 }
 
-async function cargarComentarios(id) {
-  listaComentarios.innerHTML = "";
-  const q = collection(db, "productos", id, "comentarios");
-  const querySnap = await getDocs(q);
-
-  let total = 0;
-  let count = 0;
-
-  querySnap.forEach(docSnap => {
-    const data = docSnap.data();
-
-    const div = document.createElement("div");
-    div.classList.add("comentario");
-    div.innerHTML = `
-      <strong>${data.usuario || "Anónimo"}</strong>
-      <p>${"⭐".repeat(data.calificacion)} (${data.calificacion})</p>
-      <p>${data.texto}</p>
-      <hr>
-    `;
-    listaComentarios.appendChild(div);
-
-    total += data.calificacion;
-    count++;
-  });
-
-  if (count > 0) {
-    const promedio = (total / count).toFixed(1);
-    promedioEstrellas.textContent = `⭐ Promedio: ${promedio} / 5`;
-  } else {
-    promedioEstrellas.textContent = "⭐ Promedio: -";
-  }
-}
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const texto = document.getElementById("comentario-texto").value.trim();
-  const calificacion = parseInt(document.getElementById("comentario-calificacion").value);
-
-  if (!texto) {
-    alert("⚠️ Escribe un comentario");
+async function cargarProducto() {
+  if (!productId) {
+    document.body.innerHTML = "<h2>❌ Producto no encontrado</h2>";
     return;
   }
 
-  const user = auth.currentUser;
-
   try {
-    await addDoc(collection(db, "productos", id, "comentarios"), {
-      usuario: user?.displayName || user?.email || "Anónimo",
-      texto,
-      calificacion,
-      fecha: serverTimestamp()
+    const ref = doc(db, "productos", productId);
+    const snap = await getDoc(ref);
+
+    if (!snap.exists()) {
+      document.body.innerHTML = "<h2>❌ Producto no encontrado</h2>";
+      return;
+    }
+
+    const data = snap.data();
+    imgEl.src = data.foto || "";
+    imgEl.alt = data.titulo || "Producto";
+    tituloEl.textContent = data.titulo || "";
+    precioEl.textContent = `${data.precio} COP / ${data.tipo}`;
+    ubicacionEl.textContent = `📍 ${data.ubicacion || ""}`;
+    descripcionEl.textContent = data.descripcion || "";
+    document.title = `${data.titulo} - Rentaplus`;
+  } catch (err) {
+    console.error("⚠️ Error cargando producto:", err);
+    document.body.innerHTML = "<h2>⚠️ Error al cargar producto</h2>";
+  }
+}
+
+async function cargarComentarios() {
+  try {
+    const colRef = collection(db, "productos", productId, "comentarios");
+    const q = query(colRef, orderBy("creado", "desc"));
+    const snap = await getDocs(q);
+
+    let html = "";
+    let suma = 0;
+    let total = 0;
+
+    if (snap.empty) {
+      promedioEl.textContent = "⭐ Promedio: – (0)";
+      listaComentariosEl.innerHTML =
+        '<p style="color:#777">Sé el primero en comentar.</p>';
+      return;
+    }
+
+    snap.forEach((docc) => {
+      const c = docc.data();
+      const cal = Number(c.calificacion) || 0;
+      const autor = c.autorNombre || "Usuario";
+      const texto = c.texto || "";
+      suma += cal;
+      total += 1;
+
+      html += `
+        <div class="comentario">
+          <strong>${autor}</strong>
+          <div>${"★".repeat(cal)}${"☆".repeat(5 - cal)}</div>
+          <p>${texto}</p>
+        </div>
+      `;
     });
 
-    form.reset();
-    cargarComentarios(id);
+    const promedio = suma / total;
+    const promedioTxt = `${promedio.toFixed(1)} (${total})`;
+    promedioEl.innerHTML = `⭐ Promedio: <span style="font-weight:600">${starsBar(
+      promedio
+    )}</span> <span style="color:#555">${promedioTxt}</span>`;
+
+    listaComentariosEl.innerHTML = html;
   } catch (err) {
-    console.error("⚠️ Error enviando comentario:", err);
+    console.error("⚠️ Error cargando comentarios:", err);
+    promedioEl.textContent = "⭐ Promedio: –";
+    listaComentariosEl.innerHTML =
+      '<p style="color:#c00">No se pudieron cargar los comentarios.</p>';
   }
-});
-
-document.getElementById("eliminar-btn").addEventListener("click", async () => {
-  if (confirm("¿Seguro que deseas eliminar este producto?")) {
-    try {
-      await deleteDoc(doc(db, "productos", id));
-      alert("✅ Producto eliminado");
-      window.location.href = "productos.html";
-    } catch (err) {
-      console.error("⚠️ Error eliminando producto:", err);
-    }
-  }
-});
-
-if (!id) {
-  document.body.innerHTML = "<h2>❌ Producto no encontrado</h2>";
-} else {
-  cargarProducto(id);
-  cargarComentarios(id);
 }
+
+if (formComentario) {
+  formComentario.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const user = auth.currentUser;
+    if (!user) {
+      alert("Debes iniciar sesión para comentar.");
+      return;
+    }
+
+    const calificacion = parseInt(selCalificacion.value, 10);
+    const texto = (txtComentario.value || "").trim();
+
+    if (!calificacion || calificacion < 1 || calificacion > 5) {
+      alert("Selecciona una calificación válida (1–5).");
+      return;
+    }
+    if (!texto) {
+      alert("Escribe un comentario.");
+      return;
+    }
+
+    try {
+      const autorNombre = user.displayName || user.email || "Usuario";
+      await addDoc(collection(db, "productos", productId, "comentarios"), {
+        calificacion,
+        texto,
+        autorId: user.uid,
+        autorNombre,
+        creado: serverTimestamp(),
+      });
+
+      txtComentario.value = "";
+      selCalificacion.value = "5";
+      await cargarComentarios();
+    } catch (err) {
+      console.error("❌ Error al publicar comentario:", err);
+      alert("No se pudo publicar el comentario: " + err.message);
+    }
+  });
+}
+
+(async function init() {
+  await cargarProducto();
+  await cargarComentarios();
+})();
