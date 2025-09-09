@@ -1,76 +1,34 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Producto - Rentaplus</title>
-  <link rel="stylesheet" href="index.css">
-  <style>
-    .promedio-estrellas {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 8px 0;
-      color: #333;
-    }
-    .estrellas {
-      color: #ddd;
-      font-size: 18px;
-    }
-    .estrella-activa {
-      color: #ffa500; 
-    }
-    .comentario {
-      border-top: 1px solid #ddd;
-      padding: 10px 0;
-    }
-  </style>
-</head>
-<body>
-  <header class="nav-header">
-    <div class="nav-container">
-      <p class="logo"><a href="index.html">Rentaplus</a></p>
-    </div>
-  </header>
+<main class="producto-container">
+  <div class="producto-imagen">
+    <img id="producto-foto" src="" alt="Producto">
+  </div>
 
-  <main class="producto-container">
-    <div class="producto-imagen">
-      <img id="producto-foto" src="" alt="Producto">
-    </div>
+  <div class="producto-info">
+    <h1 id="producto-titulo"></h1>
+    <p id="producto-rating" class="producto-rating"></p>
+    <p class="producto-precio" id="producto-precio"></p>
+    <p class="producto-ubicacion" id="producto-ubicacion"></p>
+    <p class="producto-descripcion" id="producto-descripcion"></p>
+    <button class="btn-alquilar">Alquilar ahora</button>
+    <button class="btn-eliminar" id="eliminar-btn">Eliminar producto</button>
+  </div>
+</main>
 
-    <div class="producto-info">
-      <h1 id="producto-titulo"></h1>
-      <p class="producto-precio" id="producto-precio"></p>
-      <p class="producto-ubicacion" id="producto-ubicacion"></p>
-      <p class="producto-descripcion" id="producto-descripcion"></p>
+<section class="comentarios-container">
+  <h2>Comentarios y Calificaciones</h2>
+  <form id="comentario-form">
+    <label for="estrellas">Calificación:</label>
+    <select id="estrellas" required>
+      <option value="5">★★★★★ (5)</option>
+      <option value="4">★★★★☆ (4)</option>
+      <option value="3">★★★☆☆ (3)</option>
+      <option value="2">★★☆☆☆ (2)</option>
+      <option value="1">★☆☆☆☆ (1)</option>
+    </select>
 
-      <div id="promedio-estrellas" class="promedio-estrellas">⭐ Aún no hay calificaciones</div>
+    <textarea id="comentario-texto" placeholder="Escribe tu comentario" required></textarea>
+    <button type="submit">Enviar comentario</button>
+  </form>
 
-      <button class="btn-alquilar">Alquilar ahora</button>
-      <button class="btn-eliminar" id="eliminar-btn">Eliminar producto</button>
-    </div>
-  </main>
-
-  <section class="comentarios-container">
-    <h2>Comentarios</h2>
-    <div id="comentarios-lista"></div>
-
-    <form id="comentario-form">
-      <label for="estrellas">Calificación:</label>
-      <select id="estrellas" required>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
-      </select>
-
-      <label for="comentario-texto">Comentario:</label>
-      <textarea id="comentario-texto" rows="3" required></textarea>
-
-      <button type="submit">Enviar</button>
-    </form>
-  </section>
-
-  <script type="module" src="producto.js"></script>
-</body>
-</html>
+  <div id="comentarios-lista"></div>
+</section>

@@ -1647,3 +1647,42 @@ body {
   color: #ffb300;
   margin-bottom: 4px;
 }
+
+.producto-imagen img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.producto-rating {
+  font-size: 18px;
+  color: #ffb300; /* amarillo tipo Mercado Libre */
+  margin: 5px 0;
+}
+
+.producto-rating span {
+  font-size: 14px;
+  color: #333;
+  margin-left: 5px;
+}
+
+.comentario {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.comentario-autor {
+  font-weight: bold;
+}
+
+.comentario-rating {
+  font-size: 16px;
+  color: #ffb300;
+  margin: 3px 0;
+}
+
+.comentario-texto {
+  margin: 5px 0;
+}
