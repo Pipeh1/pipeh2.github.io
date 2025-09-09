@@ -13,7 +13,6 @@ async function cargarProductos() {
       let data = docSnap.data();
       data.id = docSnap.id;
 
-      // 🔹 Obtener comentarios para calcular promedio
       const comentariosSnap = await getDocs(collection(db, `productos/${docSnap.id}/comentarios`));
       let total = 0, count = 0;
       comentariosSnap.forEach(c => {

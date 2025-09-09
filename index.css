@@ -1629,3 +1629,21 @@ body {
   font-weight: bold;
   margin-top: 5px;
 }
+
+.producto-rating {
+  font-size: 16px;
+  color: #ffb300; /* Amarillo tipo Mercado Libre */
+  margin: 5px 0;
+}
+
+.producto-rating span {
+  color: #333;
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+.comentario-rating {
+  font-size: 14px;
+  color: #ffb300;
+  margin-bottom: 4px;
+}
