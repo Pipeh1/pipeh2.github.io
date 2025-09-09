@@ -6,23 +6,31 @@ const id = params.get("id");
 
 if (id) cargarProducto(id);
 
+// 🔹 Cargar datos del producto
 async function cargarProducto(id) {
-  const ref = doc(db, "productos", id);
-  const snap = await getDoc(ref);
+  try {
+    const ref = doc(db, "productos", id);
+    const snap = await getDoc(ref);
 
-  if (snap.exists()) {
-    const data = snap.data();
+    if (snap.exists()) {
+      const data = snap.data();
 
-    document.getElementById("producto-foto").src = data.foto;
-    document.getElementById("producto-titulo").textContent = data.titulo;
-    document.getElementById("producto-ubicacion").textContent = "📍 " + data.ubicacion;
-    document.getElementById("producto-precio").textContent = `$${data.precio} COP / ${data.tipo}`;
-    document.getElementById("producto-descripcion").textContent = data.descripcion;
+      document.getElementById("producto-foto").src = data.foto;
+      document.getElementById("producto-titulo").textContent = data.titulo;
+      document.getElementById("producto-ubicacion").textContent = "📍 " + data.ubicacion;
+      document.getElementById("producto-precio").textContent = `$${data.precio} COP / ${data.tipo}`;
+      document.getElementById("producto-descripcion").textContent = data.descripcion;
 
-    cargarComentarios(id);
+      cargarComentarios(id);
+    } else {
+      document.body.innerHTML = "<h2>❌ Producto no encontrado</h2>";
+    }
+  } catch (err) {
+    console.error("⚠️ Error cargando producto:", err);
   }
 }
 
+// 🔹 Cargar comentarios + promedio
 async function cargarComentarios(productoId) {
   const q = query(collection(db, "comentarios"), where("productoId", "==", productoId));
   const querySnapshot = await getDocs(q);
@@ -58,14 +66,18 @@ async function cargarComentarios(productoId) {
   }
 }
 
+// 🔹 Pintar estrellas
 function mostrarEstrellas(num) {
   let estrellas = "";
   for (let i = 1; i <= 5; i++) {
-    estrellas += i <= num ? `<span class="estrella-activa">★</span>` : `<span>☆</span>`;
+    estrellas += i <= num
+      ? `<span class="estrella-activa">★</span>`
+      : `<span>☆</span>`;
   }
   return `<span class="estrellas">${estrellas}</span>`;
 }
 
+// 🔹 Guardar nuevo comentario
 const form = document.getElementById("comentario-form");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -88,11 +100,9 @@ form.addEventListener("submit", async (e) => {
       creado: serverTimestamp()
     });
 
-    alert("✅ Comentario publicado");
     form.reset();
     cargarComentarios(id);
   } catch (err) {
     console.error("❌ Error al guardar comentario:", err);
-    alert("Error: " + err.message);
   }
 });
