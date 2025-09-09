@@ -1686,3 +1686,18 @@ body {
 .comentario-texto {
   margin: 5px 0;
 }
+
+#comentario-form button {
+  padding: 6px 12px;
+  font-size: 14px;
+  background: orange;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#comentario-form button:hover {
+  background: darkorange;
+}
