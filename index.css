@@ -1744,3 +1744,21 @@ body.modo-oscuro select {
   color: #e0e0e0;
   border: 1px solid #3a3a3a;
 }
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-image {
+  height: 60px; 
+  width: auto;
+}
+
