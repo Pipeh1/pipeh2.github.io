@@ -1702,7 +1702,6 @@ body {
   background: darkorange;
 }
 
-/* === 🌙 BOTÓN EN MENÚ DE PERFIL === */
 .menu-desplegable a {
   display: block;
   padding: 10px;
@@ -1716,7 +1715,6 @@ body {
   color: #ff7b00;
 }
 
-/* === 🌙 MODO OSCURO GENERAL === */
 body.modo-oscuro {
   background-color: #121212;
   color: #e0e0e0;

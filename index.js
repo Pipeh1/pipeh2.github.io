@@ -46,18 +46,3 @@ function cardHtml(item) {
 
 cargarProductos();
 
-const toggleTema = document.getElementById("toggle-tema");
-
-const temaGuardado = localStorage.getItem("tema");
-if (temaGuardado === "oscuro") {
-  document.body.classList.add("modo-oscuro");
-  if (toggleTema) toggleTema.textContent = "☀️ Modo claro";
-}
-
-if (toggleTema) {
-  toggleTema.addEventListener("click", () => {
-    const modoOscuro = document.body.classList.toggle("modo-oscuro");
-    localStorage.setItem("tema", modoOscuro ? "oscuro" : "claro");
-    toggleTema.textContent = modoOscuro ? "☀️ Modo claro" : "🌙 Modo oscuro";
-  });
-}
