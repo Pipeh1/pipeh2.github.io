@@ -1895,3 +1895,23 @@ body.modo-oscuro .usuario-dropdown { background:#222; color:#fff; }
   height: auto;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-unido {
+  width: 120px; 
+  height: auto;
+  display: block;
+}
+
+.nav-header {
+  padding: 6px 20px;
+}
