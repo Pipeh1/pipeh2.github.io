@@ -8,10 +8,28 @@
 </head>
 <body>
   <header class="nav-header" id="main-header">
-    <div class="nav-container">
-      <p class="logo"><a href="index.html">Rentaplus</a></p>
+  <div class="nav-container">
+    <div class="logo-container">
+      <img src="imagenes/Rentaplus logo.png" alt="Mascota Rentaplus" />
     </div>
-  </header>
+
+    <div class="nav-right">
+      <button class="nav-btn" onclick="location.href='productos.html'">ALQUILAR YA</button>
+      <button class="nav-btn" onclick="location.href='publicar.html'">PUBLICAR YA</button>
+
+      <div id="usuario-menu" class="usuario-container" style="display: none;">
+        <img id="usuario-foto" class="usuario-foto" src="img/default.png" alt="Usuario">
+        <div class="usuario-dropdown">
+          <p id="usuario-nombre"></p>
+          <a href="perfil.html" class="perfil-link">⚙️ Configurar perfil</a>
+          <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
+          <button id="cerrar-sesion-btn">Cerrar sesión</button>
+        </div>
+      </div>
+      <a id="link-sesion" href="login.html">Iniciar sesión</a>
+    </div>
+  </div>
+</header>
 
   <main class="container">
     <div class="form-container">

@@ -7,10 +7,29 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <header>
-    <a href="index.html" class="login-title">Rentaplus</a>
-  </header>
+  <header class="nav-header" id="main-header">
+  <div class="nav-container">
+    <div class="logo-container">
+      <img src="imagenes/Rentaplus logo.png" alt="Mascota Rentaplus" />
+    </div>
 
+    <div class="nav-right">
+      <button class="nav-btn" onclick="location.href='productos.html'">ALQUILAR YA</button>
+      <button class="nav-btn" onclick="location.href='publicar.html'">PUBLICAR YA</button>
+
+      <div id="usuario-menu" class="usuario-container" style="display: none;">
+        <img id="usuario-foto" class="usuario-foto" src="img/default.png" alt="Usuario">
+        <div class="usuario-dropdown">
+          <p id="usuario-nombre"></p>
+          <a href="perfil.html" class="perfil-link">⚙️ Configurar perfil</a>
+          <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
+          <button id="cerrar-sesion-btn">Cerrar sesión</button>
+        </div>
+      </div>
+      <a id="link-sesion" href="login.html">Iniciar sesión</a>
+    </div>
+  </div>
+</header>
   <main>
     <h2 class="productos-titulo">Productos en alquiler</h2>
 
