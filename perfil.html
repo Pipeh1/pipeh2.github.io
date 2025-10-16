@@ -8,27 +8,32 @@
 <body>
   <header class="nav-header" id="main-header">
   <div class="nav-container">
-    <div class="logo-container">
-      <img src="imagenes/Rentaplus logo.png" alt="Mascota Rentaplus" />
-    </div>
+    <a class="logo-completa" href="index.html">
+      <img src="imagenes/alquiler.jpeg" alt="Rentaplus" class="logo-unido">
+      <span class="logo-texto-unido">Rentaplus</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="publicar.html" class="nav-btn naranja">📤 Publicar ya</a>
+      <a href="productos.html" class="nav-btn naranja">🛒 Alquilar ya</a>
+    </nav>
 
     <div class="nav-right">
-      <button class="nav-btn" onclick="location.href='productos.html'">ALQUILAR YA</button>
-      <button class="nav-btn" onclick="location.href='publicar.html'">PUBLICAR YA</button>
-
-      <div id="usuario-menu" class="usuario-container" style="display: none;">
-        <img id="usuario-foto" class="usuario-foto" src="img/default.png" alt="Usuario">
-        <div class="usuario-dropdown">
+      <div id="usuario-menu" class="usuario-menu" style="display:none;">
+        <img id="usuario-foto" class="usuario-foto" src="imagenes/default.png" alt="Usuario">
+        <div class="usuario-dropdown" id="usuario-dropdown">
           <p id="usuario-nombre"></p>
-          <a href="perfil.html" class="perfil-link">⚙️ Configurar perfil</a>
+          <a href="perfil.html">⚙️ Configurar perfil</a>
           <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
           <button id="cerrar-sesion-btn">Cerrar sesión</button>
         </div>
       </div>
-      <a id="link-sesion" href="login.html">Iniciar sesión</a>
+
+      <a id="link-sesion" href="login.html" class="login-link">Iniciar sesión</a>
     </div>
   </div>
 </header>
+
 
   <main class="perfil-container">
     <h2>Configuración de perfil</h2>

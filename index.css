@@ -1862,3 +1862,26 @@ body.modo-oscuro footer {
   background-color: #1e1e1e;
   color: #ccc;
 }
+
+.nav-header { position: fixed; top:0; left:0; right:0; z-index:100; background:#fff; transition: transform .6s ease, opacity .6s ease; box-shadow:0 2px 6px rgba(0,0,0,0.06); }
+.nav-container { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 20px; }
+.logo-completa { display:flex; align-items:center; text-decoration:none; gap:6px; }
+.logo-unido { width:52px; height:auto; display:block; }
+.logo-texto-unido { font-size:26px; font-weight:700; color:#ff7b00; margin-left:-6px; } /* margin-left negativo para unir imagen+texto */
+
+.nav-links { display:flex; gap:12px; margin-left:10px; }
+.nav-btn.naranja { color:#ff7b00; border:1px solid #ff7b00; padding:8px 12px; border-radius:8px; text-decoration:none; background:transparent; font-weight:700; }
+.nav-btn.naranja:hover { background:#ff7b00; color:#fff; }
+
+.nav-right { display:flex; align-items:center; gap:12px; }
+
+.usuario-menu { display:flex; align-items:center; gap:8px; position:relative; }
+.usuario-foto { width:40px; height:40px; border-radius:50%; object-fit:cover; cursor:pointer; }
+.usuario-dropdown { display:none; position:absolute; right:0; top:56px; background:#fff; box-shadow:0 6px 18px rgba(0,0,0,0.12); padding:10px; border-radius:8px; min-width:180px; }
+.usuario-dropdown a, .usuario-dropdown button { display:block; padding:8px; text-decoration:none; color:#333; border:none; background:none; width:100%; text-align:left; }
+
+.nav-header.oculto { transform: translateY(-60px); opacity:0.4; }
+
+body.modo-oscuro { background:#121212; color:#e6e6e6; }
+body.modo-oscuro .nav-header { background:#1e1e1e; border-bottom:1px solid #2c2c2c; }
+body.modo-oscuro .usuario-dropdown { background:#222; color:#fff; }
