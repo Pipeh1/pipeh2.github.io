@@ -207,14 +207,20 @@
   </footer>
 
   <script type="module">
-    import { auth, signOut, onAuthStateChanged } from "./Firebase.js";
+  import { auth, signOut, onAuthStateChanged } from "./Firebase.js";
 
+  document.addEventListener("DOMContentLoaded", () => {
     const linkSesion = document.getElementById("link-sesion");
     const contenedorUsuario = document.getElementById("usuario-menu");
     const usuarioFoto = document.getElementById("usuario-foto");
     const dropdown = document.querySelector(".usuario-dropdown");
     const nombreElemento = document.getElementById("usuario-nombre");
     const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
+
+    if (!linkSesion || !contenedorUsuario) {
+      console.warn("⚠️ Algunos elementos del header no se encontraron aún.");
+      return;
+    }
 
     onAuthStateChanged(auth, user => {
       if (user) {
@@ -228,19 +234,27 @@
       }
     });
 
-    usuarioFoto.addEventListener("click", () => {
-      dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
-    });
+    if (usuarioFoto) {
+      usuarioFoto.addEventListener("click", () => {
+        dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
+      });
+    }
 
     document.addEventListener("click", e => {
-      if (!contenedorUsuario.contains(e.target)) dropdown.style.display = "none";
+      if (contenedorUsuario && !contenedorUsuario.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
     });
 
-    cerrarSesionBtn.addEventListener("click", async () => {
-      await signOut(auth);
-      window.location.href = "login.html";
-    });
-  </script>
+    if (cerrarSesionBtn) {
+      cerrarSesionBtn.addEventListener("click", async () => {
+        await signOut(auth);
+        window.location.href = "login.html";
+      });
+    }
+  });
+</script>
+
 
   <script>
     const header = document.getElementById("main-header");
