@@ -1886,8 +1886,4 @@ body.modo-oscuro { background:#121212; color:#e6e6e6; }
 body.modo-oscuro .nav-header { background:#1e1e1e; border-bottom:1px solid #2c2c2c; }
 body.modo-oscuro .usuario-dropdown { background:#222; color:#fff; }
 
-.logo-unido {
-  background-color: transparent;
-  border-radius: 50%;
-  mix-blend-mode: lighten;
-}
+
