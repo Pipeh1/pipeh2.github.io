@@ -30,7 +30,7 @@ const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
 function starsBar(n) {
-  const full = Math.round(n); // si prefieres sin redondeo: Math.floor(n)
+  const full = Math.round(n); 
   const fullStars = "★".repeat(Math.min(full, 5));
   const emptyStars = "☆".repeat(Math.max(5 - full, 0));
   return fullStars + emptyStars;
@@ -161,21 +161,27 @@ if (formComentario) {
   await cargarComentarios();
 })();
 
-eliminarBtn.addEventListener("click", async () => {
-  const user = auth.currentUser;
-  if (!user) {
-    alert("Debes iniciar sesión para eliminar un producto.");
-    return;
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  const eliminarBtn = document.getElementById("eliminar-btn");
 
-  if (confirm("¿Seguro que quieres eliminar este producto?")) {
-    try {
-      await deleteDoc(doc(db, "productos", id));
-      alert("Producto eliminado correctamente ✅");
-      window.location.href = "productos.html";
-    } catch (error) {
-      console.error("Error eliminando producto:", error);
-      alert("Error eliminando el producto: " + error.message);
-    }
+  if (eliminarBtn) {
+    eliminarBtn.addEventListener("click", async () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      if (!id) return alert("❌ No se encontró el producto.");
+
+      const confirmar = confirm("¿Seguro que deseas eliminar este producto?");
+      if (!confirmar) return;
+
+      try {
+        await deleteDoc(doc(db, "productos", id));
+        alert("✅ Producto eliminado correctamente");
+        window.location.href = "productos.html";
+      } catch (error) {
+        console.error("Error eliminando producto:", error);
+        alert("❌ Error al eliminar el producto: " + error.message);
+      }
+    });
   }
 });
