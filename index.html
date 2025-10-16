@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rentaplus</title>
   <link rel="stylesheet" href="index.css" />
+
   <style>
     .logo-container {
       display: flex;
@@ -13,9 +14,10 @@
     }
 
     .logo-container img {
-      height: 50px;
+      height: 48px;
       width: auto;
       border-radius: 50%;
+      object-fit: cover;
     }
 
     .logo-text {
@@ -64,59 +66,128 @@
       padding: 10px;
       z-index: 10;
     }
-  </style>
 
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: white;
+      z-index: 1000;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+
+    body {
+      margin: 0;
+      padding-top: 70px;
+      font-family: "Segoe UI", sans-serif;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    body.oscuro {
+      background-color: #121212;
+      color: #f5f5f5;
+    }
+
+    body.oscuro header,
+    body.oscuro footer {
+      background-color: #1e1e1e;
+    }
+
+    body.oscuro a,
+    body.oscuro .logo-text,
+    body.oscuro .nav-btn {
+      color: #ffa94d;
+    }
+
+    body.oscuro .usuario-dropdown {
+      background-color: #2a2a2a;
+      color: #fff;
+    }
+
+    body.oscuro .usuario-dropdown a {
+      color: #ffa94d;
+    }
+
+    footer {
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    #hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(to bottom right, #ff7b00, #ffb347);
+      color: white;
+    }
+
+    .btn-alquilar {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 25px;
+      background: white;
+      color: #ff7b00;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-alquilar:hover {
+      background: #ff7b00;
+      color: white;
+    }
+  </style>
 </head>
+
 <body>
   <header class="nav-header" id="main-header">
-  <div class="nav-container">
-    <a class="logo-completa" href="index.html">
-      <img src="imagenes/alquiler.jpeg" alt="Rentaplus" class="logo-unido">
-      <span class="logo-texto-unido">Rentaplus</span>
-    </a>
-
-    <nav class="nav-links">
-      <a href="publicar.html" class="nav-btn naranja"> Publicar ya</a>
-      <a href="productos.html" class="nav-btn naranja"> Alquilar ya</a>
-    </nav>
-
-    <div class="nav-right">
-      <div id="usuario-menu" class="usuario-menu" style="display:none;">
-        <img id="usuario-foto" class="usuario-foto" src="imagenes/default.png" alt="Usuario">
-        <div class="usuario-dropdown" id="usuario-dropdown">
-          <p id="usuario-nombre"></p>
-          <a href="perfil.html">⚙️ Configurar perfil</a>
-          <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
-          <button id="cerrar-sesion-btn">Cerrar sesión</button>
-        </div>
+    <div class="nav-container" style="display:flex; align-items:center; justify-content:space-between; padding:10px 20px;">
+      <div class="nav-left logo-container">
+        <img src="imagenes/logo-rentaplus.png" alt="Logo Rentaplus" />
+        <span class="logo-text">Rentaplus</span>
       </div>
 
+      <div class="nav-right">
+        <button class="nav-btn" onclick="location.href='productos.html'">ALQUILAR YA</button>
+        <button class="nav-btn" onclick="location.href='publicar.html'">PUBLICAR YA</button>
 
+        <div id="usuario-menu" class="usuario-container" style="display: none;">
+          <img id="usuario-foto" class="usuario-foto" src="img/default.png" alt="Usuario">
+          <div class="usuario-dropdown">
+            <p id="usuario-nombre"></p>
+            <a href="perfil.html" class="perfil-link">⚙️ Configurar perfil</a>
+            <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
+            <button id="cerrar-sesion-btn">Cerrar sesión</button>
+          </div>
+        </div>
+        <a id="link-sesion" href="login.html">Iniciar sesión</a>
+      </div>
+    </div>
+  </header>
 
   <section id="hero">
     <h1>Alquila productos <br>que necesites</h1>
     <a href="productos.html" class="btn-alquilar">ALQUILA YA</a>
-
   </section>
 
   <section id="somos-Rentaplus">
     <div class="container">
-      <div class="texto">
-        <h2>Somos <span class="color-acento">Rentaplus</span></h2> 
+      <div class="texto" style="text-align:center; max-width:600px; margin:auto;">
+        <h2>Somos <span class="color-acento">Rentaplus</span></h2>
         <p>Somos una empresa joven, innovadora y comprometida. Nuestro propósito es ayudarte a ahorrar dinero, espacio y tiempo alquilando lo que necesites, cuando lo necesites.</p>
       </div>
     </div>
   </section>
 
-  <section id="caracteristicas">
-    <div class="container">
-      <ul>
-        <li>✔️ 100% online</li>
-        <li>✔️ 100% seguro</li>
-        <li>✔️ Llega rápido</li>
-        <li>✔️ Soporte inmediato</li>
-      </ul>
-    </div>
+  <section id="caracteristicas" style="text-align:center; padding:40px 0;">
+    <ul style="list-style:none; padding:0; line-height:1.8;">
+      <li>✔️ 100% online</li>
+      <li>✔️ 100% seguro</li>
+      <li>✔️ Llega rápido</li>
+      <li>✔️ Soporte inmediato</li>
+    </ul>
   </section>
 
   <footer>
@@ -161,35 +232,31 @@
     });
   </script>
 
-<script>
-  const header = document.getElementById("main-header");
-  let ultimoScroll = 0;
-  let ocultando = false;
+  <script>
+    const header = document.getElementById("main-header");
+    let ultimoScroll = 0;
+    let ocultando = false;
 
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
 
-    if (scrollY > ultimoScroll && scrollY > 60 && !ocultando) {
-      ocultando = true;
-      header.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-      header.style.transform = "translateY(-60px)";
-      header.style.opacity = "0.3";
-    }
+      if (scrollY > ultimoScroll && scrollY > 60 && !ocultando) {
+        ocultando = true;
+        header.style.transform = "translateY(-60px)";
+        header.style.opacity = "0.3";
+      }
 
-    if (scrollY < ultimoScroll) {
-      ocultando = false;
-      header.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-      header.style.transform = "translateY(0)";
-      header.style.opacity = "1";
-    }
+      if (scrollY < ultimoScroll) {
+        ocultando = false;
+        header.style.transform = "translateY(0)";
+        header.style.opacity = "1";
+      }
 
-    ultimoScroll = scrollY;
-  });
-</script>
+      ultimoScroll = scrollY;
+    });
+  </script>
 
-<script src="tema.js"></script>
-<script src="header-util.js"></script>
-
-
+  <script src="tema.js"></script>
+  <script src="header-util.js"></script>
 </body>
 </html>
