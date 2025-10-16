@@ -143,29 +143,27 @@
 
 <body>
   <header class="nav-header" id="main-header">
-    <div class="nav-container" style="display:flex; align-items:center; justify-content:space-between; padding:10px 20px;">
-      <div class="nav-left logo-container">
-        <img src="imagenes/alquiler.jpeg" alt="Logo Rentaplus" />
-        <span class="logo-text">Rentaplus</span>
-      </div>
+  <div class="nav-container">
+    <a class="logo-completa" href="index.html">
+      <img src="imagenes/alquiler.jpeg" alt="Rentaplus" class="logo-unido">
+      <span class="logo-texto-unido">Rentaplus</span>
+    </a>
 
-      <div class="nav-right">
-        <button class="nav-btn" onclick="location.href='productos.html'">ALQUILAR YA</button>
-        <button class="nav-btn" onclick="location.href='publicar.html'">PUBLICAR YA</button>
+    <nav class="nav-links">
+      <a href="publicar.html" class="nav-btn naranja"> Publicar ya</a>
+      <a href="productos.html" class="nav-btn naranja"> Alquilar ya</a>
+    </nav>
 
-        <div id="usuario-menu" class="usuario-container" style="display: none;">
-          <img id="usuario-foto" class="usuario-foto" src="img/default.png" alt="Usuario">
-          <div class="usuario-dropdown">
-            <p id="usuario-nombre"></p>
-            <a href="perfil.html" class="perfil-link">⚙️ Configurar perfil</a>
-            <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
-            <button id="cerrar-sesion-btn">Cerrar sesión</button>
-          </div>
+    <div class="nav-right">
+      <div id="usuario-menu" class="usuario-menu" style="display:none;">
+        <img id="usuario-foto" class="usuario-foto" src="imagenes/default.png" alt="Usuario">
+        <div class="usuario-dropdown" id="usuario-dropdown">
+          <p id="usuario-nombre"></p>
+          <a href="perfil.html">⚙️ Configurar perfil</a>
+          <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
+          <button id="cerrar-sesion-btn">Cerrar sesión</button>
         </div>
-        <a id="link-sesion" href="login.html">Iniciar sesión</a>
       </div>
-    </div>
-  </header>
 
   <section id="hero">
     <h1>Alquila productos <br>que necesites</h1>
