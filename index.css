@@ -1701,3 +1701,48 @@ body {
 #comentario-form button:hover {
   background: darkorange;
 }
+
+/* === 🌙 BOTÓN EN MENÚ DE PERFIL === */
+.menu-desplegable a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s, color 0.2s;
+}
+
+.menu-desplegable a:hover {
+  background-color: rgba(255, 123, 0, 0.1);
+  color: #ff7b00;
+}
+
+/* === 🌙 MODO OSCURO GENERAL === */
+body.modo-oscuro {
+  background-color: #121212;
+  color: #e0e0e0;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.modo-oscuro header {
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #2c2c2c;
+}
+
+body.modo-oscuro footer {
+  background-color: #1e1e1e;
+  color: #aaa;
+}
+
+body.modo-oscuro main,
+body.modo-oscuro section {
+  background-color: #1b1b1b;
+  border-radius: 10px;
+}
+
+body.modo-oscuro input,
+body.modo-oscuro textarea,
+body.modo-oscuro select {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border: 1px solid #3a3a3a;
+}
