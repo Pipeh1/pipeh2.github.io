@@ -1,58 +1,271 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Mi perfil-Rentaplus</title>
-  <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rentaplus</title>
+  <link rel="stylesheet" href="index.css" />
+
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: white;
+      z-index: 1000;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+    }
+
+    .logo-completa {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 10px;
+    }
+
+    .logo-unido {
+      height: 48px;
+      width: auto;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .logo-texto-unido {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ff7b00;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-btn {
+      color: #ff7b00;
+      background: none;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-btn:hover {
+      color: #cc6600;
+    }
+
+    .usuario-foto {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .usuario-dropdown {
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      min-width: 180px;
+      padding: 10px;
+      z-index: 10;
+    }
+
+    #hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(to bottom right, #ff7b00, #ffb347);
+      color: white;
+      margin-top: 70px;
+    }
+
+    .btn-alquilar {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 25px;
+      background: white;
+      color: #ff7b00;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn-alquilar:hover {
+      background: #ff7b00;
+      color: white;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    section {
+      padding: 60px 20px;
+    }
+
+    footer {
+      background: #111;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    body.oscuro {
+      background-color: #121212;
+      color: #f5f5f5;
+    }
+
+    body.oscuro header,
+    body.oscuro footer {
+      background-color: #1e1e1e;
+    }
+
+    body.oscuro .logo-texto-unido,
+    body.oscuro .nav-btn {
+      color: #ffa94d;
+    }
+
+    body.oscuro .usuario-dropdown {
+      background-color: #2a2a2a;
+      color: #fff;
+    }
+
+    body.oscuro .usuario-dropdown a {
+      color: #ffa94d;
+    }
+  </style>
 </head>
+
 <body>
   <header class="nav-header" id="main-header">
-  <div class="nav-container">
-    <a class="logo-completa" href="index.html">
-      <img src="imagenes/alquiler.jpeg" alt="Rentaplus" class="logo-unido">
-      <span class="logo-texto-unido">Rentaplus</span>
-    </a>
+    <div class="nav-container">
+      <a class="logo-completa" href="index.html">
+        <img src="imagenes/alquiler.jpeg" alt="Rentaplus" class="logo-unido">
+        <span class="logo-texto-unido">Rentaplus</span>
+      </a>
 
-    <nav class="nav-links">
-      <a href="publicar.html" class="nav-btn naranja"> Publicar ya</a>
-      <a href="productos.html" class="nav-btn naranja"> Alquilar ya</a>
-    </nav>
+      <nav class="nav-links">
+        <a href="publicar.html" class="nav-btn naranja">Publicar ya</a>
+        <a href="productos.html" class="nav-btn naranja">Alquilar ya</a>
+      </nav>
 
-    <div class="nav-right">
-      <div id="usuario-menu" class="usuario-menu" style="display:none;">
-        <img id="usuario-foto" class="usuario-foto" src="imagenes/default.png" alt="Usuario">
-        <div class="usuario-dropdown" id="usuario-dropdown">
-          <p id="usuario-nombre"></p>
-          <a href="perfil.html">⚙️ Configurar perfil</a>
-          <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
-          <button id="cerrar-sesion-btn">Cerrar sesión</button>
+      <div class="nav-right">
+        <div id="usuario-menu" class="usuario-menu" style="display:none;">
+          <img id="usuario-foto" class="usuario-foto" src="imagenes/default.png" alt="Usuario">
+          <div class="usuario-dropdown" id="usuario-dropdown">
+            <p id="usuario-nombre"></p>
+            <a href="perfil.html">⚙️ Configurar perfil</a>
+            <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
+            <button id="cerrar-sesion-btn">Cerrar sesión</button>
+          </div>
         </div>
+        <a id="link-sesion" href="login.html" class="login-link">Iniciar sesión</a>
       </div>
-
-      <a id="link-sesion" href="login.html" class="login-link">Iniciar sesión</a>
     </div>
-  </div>
-</header>
+  </header>
 
+  <section id="hero">
+    <h1>Alquila productos <br>que necesites</h1>
+    <a href="productos.html" class="btn-alquilar">ALQUILA YA</a>
+  </section>
 
-  <main class="perfil-container">
-    <h2>Configuración de perfil</h2>
-    <form id="perfil-form">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" placeholder="Tu nombre" />
+  <section id="somos-Rentaplus">
+    <div class="container" style="text-align:center; max-width:700px; margin:auto;">
+      <h2>Somos <span class="color-acento">Rentaplus</span></h2> 
+      <p>Somos una empresa joven, innovadora y comprometida. Nuestro propósito es ayudarte a ahorrar dinero, espacio y tiempo alquilando lo que necesites, cuando lo necesites.</p>
+    </div>
+  </section>
 
-      <label for="foto">Foto de perfil :</label>
-      <input type="file" id="foto" accept="image/*" />
+  <section id="caracteristicas" style="text-align:center;">
+    <ul style="list-style:none; padding:0; line-height:1.8;">
+      <li>✔️ 100% online</li>
+      <li>✔️ 100% seguro</li>
+      <li>✔️ Llega rápido</li>
+      <li>✔️ Soporte inmediato</li>
+    </ul>
+  </section>
 
-      <button type="submit">Guardar cambios</button>
-    </form>
-  </main>
+  <footer>
+    <p>&copy; Monovas Company 2025</p>
+  </footer>
 
-  <script type="module" src="perfil.js"></script>
+  <script type="module">
+    import { auth, signOut, onAuthStateChanged } from "./Firebase.js";
+
+    const linkSesion = document.getElementById("link-sesion");
+    const contenedorUsuario = document.getElementById("usuario-menu");
+    const usuarioFoto = document.getElementById("usuario-foto");
+    const dropdown = document.querySelector(".usuario-dropdown");
+    const nombreElemento = document.getElementById("usuario-nombre");
+    const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        contenedorUsuario.style.display = "flex";
+        nombreElemento.textContent = user.displayName || user.email;
+        usuarioFoto.src = user.photoURL || "imagenes/default.png";
+        linkSesion.style.display = "none";
+      } else {
+        contenedorUsuario.style.display = "none";
+        linkSesion.style.display = "inline-block";
+      }
+    });
+
+    usuarioFoto.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
+    });
+
+    document.addEventListener("click", e => {
+      if (!contenedorUsuario.contains(e.target)) dropdown.style.display = "none";
+    });
+
+    cerrarSesionBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      window.location.href = "login.html";
+    });
+  </script>
+
+  <script>
+    const header = document.getElementById("main-header");
+    let ultimoScroll = 0;
+    let ocultando = false;
+
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+
+      if (scrollY > ultimoScroll && scrollY > 60 && !ocultando) {
+        ocultando = true;
+        header.style.transform = "translateY(-60px)";
+        header.style.opacity = "0.3";
+      }
+
+      if (scrollY < ultimoScroll) {
+        ocultando = false;
+        header.style.transform = "translateY(0)";
+        header.style.opacity = "1";
+      }
+
+      ultimoScroll = scrollY;
+    });
+  </script>
 
   <script src="tema.js"></script>
-  <script src="header-util.js"></script>
-
-
 </body>
 </html>
