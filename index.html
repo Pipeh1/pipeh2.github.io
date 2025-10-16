@@ -4,17 +4,82 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rentaplus</title>
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="index.css" />
+  <style>
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-container img {
+      height: 50px;
+      width: auto;
+      border-radius: 50%;
+    }
+
+    .logo-text {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ff7b00;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav-btn {
+      color: #ff7b00;
+      background: none;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .nav-btn:hover {
+      color: #cc6600;
+    }
+
+    .usuario-foto {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .usuario-dropdown {
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      display: none;
+      flex-direction: column;
+      min-width: 180px;
+      padding: 10px;
+      z-index: 10;
+    }
+  </style>
 </head>
 <body>
   <header class="nav-header" id="main-header">
     <div class="nav-container">
-      <div class="nav-left">
-        <p class="logo">Rentaplus</p>
+      <div class="nav-left logo-container">
+        <img src="imagenes/alquiler.jpeg" alt="Logo Rentaplus" />
+        <span class="logo-text">Rentaplus</span>
       </div>
+
       <div class="nav-right">
+        <button class="nav-btn" onclick="location.href='productos.html'">ALQUILAR YA</button>
+        <button class="nav-btn" onclick="location.href='publicar.html'">PUBLICAR YA</button>
+
         <div id="usuario-menu" class="usuario-container" style="display: none;">
-          <div class="usuario-icono">👤</div>
+          <img id="usuario-foto" class="usuario-foto" src="img/default.png" alt="Usuario">
           <div class="usuario-dropdown">
             <p id="usuario-nombre"></p>
             <a href="perfil.html" class="perfil-link">⚙️ Configurar perfil</a>
@@ -33,33 +98,9 @@
 
   <section id="somos-Rentaplus">
     <div class="container">
-      <div class="img-container"></div>
       <div class="texto">
         <h2>Somos <span class="color-acento">Rentaplus</span></h2> 
         <p>Somos una empresa joven, innovadora y comprometida. Nuestro propósito es ayudarte a ahorrar dinero, espacio y tiempo alquilando lo que necesites, cuando lo necesites.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="Algunos-de-nuestros-productos">
-    <div class="container">
-      <h2>Algunos de nuestros productos</h2>
-      <div class="programas">
-        <div class="carta">
-          <h3>Play Station 5</h3>
-          <p>Experimenta la nueva generación de videojuegos con gráficos ultra realistas, carga rápida y compatibilidad con títulos exclusivos.</p>
-          <a href="Producto-ps5.html" class="btn-alquilar">ALQUILA YA</a>   
-        </div>
-        <div class="carta">
-          <h3>Freidora</h3>
-          <p>Freidora profesional de una tina, ideal para restaurantes, negocios de comida rápida o eventos.</p>
-          <a href="producto-freidora.html" class="btn-alquilar">ALQUILA YA</a>
-        </div>
-        <div class="carta">
-          <h3>Impresora</h3>
-          <p>Impresora KONICA MINOLTA BIZHUB C454e de alto rendimiento, ideal para empresas.</p>
-          <a href="impresora.html" class="btn-alquilar">ALQUILA YA</a>    
-        </div>
       </div>
     </div>
   </section>
@@ -75,106 +116,46 @@
     </div>
   </section>
 
-  <section id="Aplica-ya">
-    <div class="moto">
-    <h2>¿QUIERES EMPEZAR A SER UNO DE LOS QUE VENDE</h2>
-      <h3>Gana plata alquilando algunos de los objetos que no necesites</h3>
-      <a href="publicar.html" class="btn-alquilar">PUBLICA YA</a>
-    </div>
-  </section>
-
   <footer>
     <div class="container">
-      <p>&copy; Monovas company 2025</p>
+      <p>&copy; Monovas Company 2025</p>
     </div>
   </footer>
 
   <script type="module">
-    import { auth, signOut, onAuthStateChanged } from "./firebase.js";
+    import { auth, signOut, onAuthStateChanged } from "./Firebase.js";
 
-    const linkSesion = document.getElementById('link-sesion');
+    const linkSesion = document.getElementById("link-sesion");
     const contenedorUsuario = document.getElementById("usuario-menu");
-    const icono = document.querySelector(".usuario-icono");
+    const usuarioFoto = document.getElementById("usuario-foto");
     const dropdown = document.querySelector(".usuario-dropdown");
     const nombreElemento = document.getElementById("usuario-nombre");
     const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
 
     onAuthStateChanged(auth, user => {
       if (user) {
-        contenedorUsuario.style.display = "inline-block";
+        contenedorUsuario.style.display = "flex";
         nombreElemento.textContent = user.displayName || user.email;
-        linkSesion.style.display = "none"; // ocultar "Iniciar sesión"
+        usuarioFoto.src = user.photoURL || "img/default.png";
+        linkSesion.style.display = "none";
       } else {
         contenedorUsuario.style.display = "none";
         linkSesion.style.display = "inline-block";
-        linkSesion.textContent = "Iniciar sesión";
-        linkSesion.href = "login.html";
       }
     });
 
-    icono.addEventListener("click", () => {
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    usuarioFoto.addEventListener("click", () => {
+      dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
     });
 
-    document.addEventListener("click", (e) => {
-      if (!contenedorUsuario.contains(e.target)) {
-        dropdown.style.display = "none";
-      }
+    document.addEventListener("click", e => {
+      if (!contenedorUsuario.contains(e.target)) dropdown.style.display = "none";
     });
 
     cerrarSesionBtn.addEventListener("click", async () => {
-      try {
-        await signOut(auth);
-        window.location.href = "login.html";
-      } catch (err) {
-        alert("Error al cerrar sesión: " + err.message);
-      }
+      await signOut(auth);
+      window.location.href = "login.html";
     });
   </script>
-
-  <script>
-    let lastScroll = 0;
-    const header = document.getElementById("main-header");
-
-    window.addEventListener("scroll", () => {
-      const currentScroll = window.pageYOffset;
-      if (currentScroll > lastScroll && currentScroll > 80) {
-        header.classList.add("hide");
-      } else if (currentScroll < lastScroll && lastScroll - currentScroll > 50) {
-        header.classList.remove("hide");
-      }
-      lastScroll = currentScroll;
-    });
-
-    function cardHtml(item) {
-  const tipoTexto = item.rentalType === "dia" ? "día" 
-                   : item.rentalType === "semana" ? "semana" 
-                   : "mes";
-
-  return `
-    <div class="carta">
-      <img src="${item.imageUrl}" alt="${item.title}" 
-           style="width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:12px">
-      <h3>${item.title}</h3>
-      <p>${item.location || ""}</p>
-      <p><strong>$${(item.price || 0).toLocaleString("es-CO")} COP / ${tipoTexto}</strong></p>
-      <a href="#" class="btn-alquilar">ALQUILA YA</a>
-    </div>
-  `;
-}
-
-async function load() {
-    const q = query(collection(db, "listings"), orderBy("createdAt", "desc"), limit(12));
-    const snap = await getDocs(q);
-    let html = "";
-    snap.forEach(doc => html += cardHtml(doc.data()));
-    grid.innerHTML = html || "<p>No hay publicaciones aún.</p>";
-  }
-
-  load();
-  </script>
-
-  
-
 </body>
 </html>
