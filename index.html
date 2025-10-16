@@ -68,31 +68,29 @@
 </head>
 <body>
   <header class="nav-header" id="main-header">
-    <div class="nav-container">
-      <div class="nav-left logo-container">
-  <img src="imagenes/Rentaplus logo.png" alt="Logo Rentaplus" class="logo-image" />
-</div>
-
-      </div>
-
-      <div class="nav-right">
-        <button class="nav-btn" onclick="location.href='productos.html'">ALQUILAR YA</button>
-        <button class="nav-btn" onclick="location.href='publicar.html'">PUBLICAR YA</button>
-
-        <div id="usuario-menu" class="usuario-container" style="display: none;">
-          <img id="usuario-foto" class="usuario-foto" src="img/default.png" alt="Usuario">
-          <div class="usuario-dropdown">
-            <p id="usuario-nombre"></p>
-            <a href="perfil.html" class="perfil-link">⚙️ Configurar perfil</a>
-            <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
-
-            <button id="cerrar-sesion-btn">Cerrar sesión</button>
-          </div>
-        </div>
-        <a id="link-sesion" href="login.html">Iniciar sesión</a>
-      </div>
+  <div class="nav-container">
+    <div class="logo-container">
+      <img src="imagenes/Rentaplus logo.png" alt="Mascota Rentaplus" />
     </div>
-  </header>
+
+    <div class="nav-right">
+      <button class="nav-btn" onclick="location.href='productos.html'">ALQUILAR YA</button>
+      <button class="nav-btn" onclick="location.href='publicar.html'">PUBLICAR YA</button>
+
+      <div id="usuario-menu" class="usuario-container" style="display: none;">
+        <img id="usuario-foto" class="usuario-foto" src="img/default.png" alt="Usuario">
+        <div class="usuario-dropdown">
+          <p id="usuario-nombre"></p>
+          <a href="perfil.html" class="perfil-link">⚙️ Configurar perfil</a>
+          <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
+          <button id="cerrar-sesion-btn">Cerrar sesión</button>
+        </div>
+      </div>
+      <a id="link-sesion" href="login.html">Iniciar sesión</a>
+    </div>
+  </div>
+</header>
+
 
   <section id="hero">
     <h1>Alquila productos <br>que necesites</h1>
@@ -177,6 +175,34 @@ if (toggleTema) {
   });
 }
 </script>
+
+<script>
+  const header = document.getElementById("main-header");
+  let ultimoScroll = 0;
+  let ocultando = false;
+
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+
+    if (scrollY > ultimoScroll && scrollY > 60 && !ocultando) {
+      ocultando = true;
+      header.style.transition = "transform 0.6s ease, opacity 0.6s ease";
+      header.style.transform = "translateY(-60px)";
+      header.style.opacity = "0.3";
+    }
+
+    if (scrollY < ultimoScroll) {
+      ocultando = false;
+      header.style.transition = "transform 0.6s ease, opacity 0.6s ease";
+      header.style.transform = "translateY(0)";
+      header.style.opacity = "1";
+    }
+
+    ultimoScroll = scrollY;
+  });
+</script>
+
+<script src="tema.js"></script>
 
 </body>
 </html>
