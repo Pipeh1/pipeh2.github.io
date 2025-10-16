@@ -3,6 +3,7 @@ import {
   db,
   doc,
   getDoc,
+  deleteDoc,
   collection,
   query,
   orderBy,
@@ -159,3 +160,22 @@ if (formComentario) {
   await cargarProducto();
   await cargarComentarios();
 })();
+
+eliminarBtn.addEventListener("click", async () => {
+  const user = auth.currentUser;
+  if (!user) {
+    alert("Debes iniciar sesión para eliminar un producto.");
+    return;
+  }
+
+  if (confirm("¿Seguro que quieres eliminar este producto?")) {
+    try {
+      await deleteDoc(doc(db, "productos", id));
+      alert("Producto eliminado correctamente ✅");
+      window.location.href = "productos.html";
+    } catch (error) {
+      console.error("Error eliminando producto:", error);
+      alert("Error eliminando el producto: " + error.message);
+    }
+  }
+});
