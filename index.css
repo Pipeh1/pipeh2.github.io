@@ -1943,7 +1943,6 @@ body.modo-oscuro a:hover {
   color: #ff7b00;
 }
 
-/* 🌙 Estilos adicionales para modo oscuro */
 body.modo-oscuro .producto-item {
   background-color: #1e1e1e;
   border: 1px solid #333;
@@ -1975,3 +1974,58 @@ body.modo-oscuro input {
   color: #fff;
 }
 
+body.modo-oscuro .producto-container {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  border-radius: 10px;
+  border: 1px solid #333;
+}
+
+body.modo-oscuro .producto-imagen {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+}
+
+body.modo-oscuro .producto-imagen img {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+body.modo-oscuro .producto-info h1,
+body.modo-oscuro .producto-info p {
+  color: #f5f5f5;
+}
+
+body.modo-oscuro .comentarios-section {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  box-shadow: none;
+}
+
+body.modo-oscuro #comentario-form select,
+body.modo-oscuro #comentario-form textarea {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+body.modo-oscuro .btn-comentario,
+body.modo-oscuro .btn-alquilar,
+body.modo-oscuro .btn-eliminar {
+  background-color: #ff7b00;
+  color: #fff;
+  border: none;
+}
+
+body.modo-oscuro .btn-comentario:hover,
+body.modo-oscuro .btn-alquilar:hover {
+  background-color: #cc6600;
+}
+
+body.modo-oscuro .btn-eliminar {
+  background-color: #a62828;
+}
+body.modo-oscuro .btn-eliminar:hover {
+  background-color: #d63232;
+}
