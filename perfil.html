@@ -5,37 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rentaplus</title>
   <link rel="stylesheet" href="index.css" />
+  <link rel="icon" href="imagenes/alquiler.jpeg" type="image/jpeg">
 
   <style>
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: white;
-      z-index: 1000;
-      transition: transform 0.6s ease, opacity 0.6s ease;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 30px;
-    }
-
     .logo-completa {
       display: flex;
       align-items: center;
+      gap: 6px;
       text-decoration: none;
-      gap: 10px;
     }
 
     .logo-unido {
       height: 48px;
       width: auto;
       border-radius: 50%;
-      object-fit: cover;
     }
 
     .logo-texto-unido {
@@ -44,9 +27,24 @@
       color: #ff7b00;
     }
 
-    .nav-links {
+    .nav-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--header-bg, white);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
       display: flex;
-      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
     }
 
     .nav-btn {
@@ -55,8 +53,8 @@
       border: none;
       font-weight: bold;
       cursor: pointer;
-      text-decoration: none;
       transition: color 0.3s;
+      text-decoration: none;
     }
 
     .nav-btn:hover {
@@ -85,74 +83,24 @@
       z-index: 10;
     }
 
-    #hero {
-      text-align: center;
-      padding: 100px 20px;
-      background: linear-gradient(to bottom right, #ff7b00, #ffb347);
-      color: white;
-      margin-top: 70px;
-    }
-
-    .btn-alquilar {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 25px;
-      background: white;
-      color: #ff7b00;
-      border-radius: 25px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .btn-alquilar:hover {
-      background: #ff7b00;
-      color: white;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      transition: background-color 0.4s, color 0.4s;
-    }
-
-    section {
-      padding: 60px 20px;
-    }
-
-    footer {
-      background: #111;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-
-    body.oscuro {
+    body.modo-oscuro {
       background-color: #121212;
       color: #f5f5f5;
     }
 
-    body.oscuro header,
-    body.oscuro footer {
+    body.modo-oscuro header {
       background-color: #1e1e1e;
     }
 
-    body.oscuro .logo-texto-unido,
-    body.oscuro .nav-btn {
-      color: #ffa94d;
+    body.modo-oscuro .logo-texto-unido {
+      color: #ffa040;
     }
 
-    body.oscuro .usuario-dropdown {
-      background-color: #2a2a2a;
-      color: #fff;
-    }
-
-    body.oscuro .usuario-dropdown a {
-      color: #ffa94d;
+    body.modo-oscuro a {
+      color: #ffa040;
     }
   </style>
 </head>
-
 <body>
   <header class="nav-header" id="main-header">
     <div class="nav-container">
@@ -187,68 +135,88 @@
   </section>
 
   <section id="somos-Rentaplus">
-    <div class="container" style="text-align:center; max-width:700px; margin:auto;">
-      <h2>Somos <span class="color-acento">Rentaplus</span></h2> 
-      <p>Somos una empresa joven, innovadora y comprometida. Nuestro propósito es ayudarte a ahorrar dinero, espacio y tiempo alquilando lo que necesites, cuando lo necesites.</p>
+    <div class="container">
+      <div class="texto">
+        <h2>Somos <span class="color-acento">Rentaplus</span></h2>
+        <p>Somos una empresa joven, innovadora y comprometida. Nuestro propósito es ayudarte a ahorrar dinero, espacio y tiempo alquilando lo que necesites, cuando lo necesites.</p>
+      </div>
     </div>
   </section>
 
-  <section id="caracteristicas" style="text-align:center;">
-    <ul style="list-style:none; padding:0; line-height:1.8;">
-      <li>✔️ 100% online</li>
-      <li>✔️ 100% seguro</li>
-      <li>✔️ Llega rápido</li>
-      <li>✔️ Soporte inmediato</li>
-    </ul>
+  <section id="caracteristicas">
+    <div class="container">
+      <ul>
+        <li>✔️ 100% online</li>
+        <li>✔️ 100% seguro</li>
+        <li>✔️ Llega rápido</li>
+        <li>✔️ Soporte inmediato</li>
+      </ul>
+    </div>
   </section>
 
   <footer>
-    <p>&copy; Monovas Company 2025</p>
+    <div class="container">
+      <p>&copy; Monovas Company 2025</p>
+    </div>
   </footer>
 
   <script type="module">
-  import { auth, signOut, onAuthStateChanged } from "./Firebase.js";
+    import { auth, signOut, onAuthStateChanged } from "./Firebase.js";
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const linkSesion = document.getElementById("link-sesion");
-    const contenedorUsuario = document.getElementById("usuario-menu");
-    const usuarioFoto = document.getElementById("usuario-foto");
-    const dropdown = document.getElementById("usuario-dropdown");
-    const nombreElemento = document.getElementById("usuario-nombre");
-    const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
+    document.addEventListener("DOMContentLoaded", () => {
+      const contenedorUsuario = document.getElementById("usuario-menu");
+      const nombreElemento = document.getElementById("usuario-nombre");
+      const usuarioFoto = document.getElementById("usuario-foto");
+      const linkSesion = document.getElementById("link-sesion");
+      const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
+      const dropdown = document.getElementById("usuario-dropdown");
+      const toggleTema = document.getElementById("toggle-tema");
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        if (contenedorUsuario) contenedorUsuario.style.display = "flex";
-        if (nombreElemento) nombreElemento.textContent = user.displayName || user.email;
-        if (usuarioFoto) usuarioFoto.src = user.photoURL || "img/default.png";
-        if (linkSesion) linkSesion.style.display = "none";
-      } else {
-        if (contenedorUsuario) contenedorUsuario.style.display = "none";
-        if (linkSesion) linkSesion.style.display = "inline-block";
+      if (localStorage.getItem("tema") === "oscuro") {
+        document.body.classList.add("modo-oscuro");
+        if (toggleTema) toggleTema.textContent = "☀️ Modo claro";
+      }
+
+      if (toggleTema) {
+        toggleTema.addEventListener("click", (e) => {
+          e.preventDefault();
+          document.body.classList.toggle("modo-oscuro");
+          const esOscuro = document.body.classList.contains("modo-oscuro");
+          localStorage.setItem("tema", esOscuro ? "oscuro" : "claro");
+          toggleTema.textContent = esOscuro ? "☀️ Modo claro" : "🌙 Modo oscuro";
+        });
+      }
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          if (contenedorUsuario) contenedorUsuario.style.display = "flex";
+          if (nombreElemento) nombreElemento.textContent = user.displayName || user.email;
+          if (usuarioFoto) usuarioFoto.src = user.photoURL || "imagenes/default.png";
+          if (linkSesion) linkSesion.style.display = "none";
+        } else {
+          if (contenedorUsuario) contenedorUsuario.style.display = "none";
+          if (linkSesion) linkSesion.style.display = "inline-block";
+        }
+      });
+
+      if (usuarioFoto && dropdown) {
+        usuarioFoto.addEventListener("click", () => {
+          dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!contenedorUsuario.contains(e.target)) dropdown.style.display = "none";
+        });
+      }
+
+      if (cerrarSesionBtn) {
+        cerrarSesionBtn.addEventListener("click", async () => {
+          await signOut(auth);
+          window.location.href = "login.html";
+        });
       }
     });
-
-    if (usuarioFoto && dropdown) {
-      usuarioFoto.addEventListener("click", () => {
-        dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
-      });
-
-      document.addEventListener("click", (e) => {
-        if (!contenedorUsuario.contains(e.target)) dropdown.style.display = "none";
-      });
-    }
-
-    if (cerrarSesionBtn) {
-      cerrarSesionBtn.addEventListener("click", async () => {
-        await signOut(auth);
-        window.location.href = "login.html";
-      });
-    }
-  });
-</script>
-
-
+  </script>
 
   <script>
     const header = document.getElementById("main-header");
@@ -260,12 +228,14 @@
 
       if (scrollY > ultimoScroll && scrollY > 60 && !ocultando) {
         ocultando = true;
+        header.style.transition = "transform 0.6s ease, opacity 0.6s ease";
         header.style.transform = "translateY(-60px)";
         header.style.opacity = "0.3";
       }
 
       if (scrollY < ultimoScroll) {
         ocultando = false;
+        header.style.transition = "transform 0.6s ease, opacity 0.6s ease";
         header.style.transform = "translateY(0)";
         header.style.opacity = "1";
       }
@@ -273,10 +243,5 @@
       ultimoScroll = scrollY;
     });
   </script>
-
-  
-
-  <script src="tema.js"></script>
-
 </body>
 </html>
