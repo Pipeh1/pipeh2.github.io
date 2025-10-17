@@ -1,247 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rentaplus</title>
-  <link rel="stylesheet" href="index.css" />
-  <link rel="icon" href="imagenes/alquiler.jpeg" type="image/jpeg">
-
-  <style>
-    .logo-completa {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-    }
-
-    .logo-unido {
-      height: 48px;
-      width: auto;
-      border-radius: 50%;
-    }
-
-    .logo-texto-unido {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #ff7b00;
-    }
-
-    .nav-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: var(--header-bg, white);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      z-index: 1000;
-      transition: transform 0.6s ease, opacity 0.6s ease;
-    }
-
-    .nav-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 20px;
-    }
-
-    .nav-btn {
-      color: #ff7b00;
-      background: none;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.3s;
-      text-decoration: none;
-    }
-
-    .nav-btn:hover {
-      color: #cc6600;
-    }
-
-    .usuario-foto {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      cursor: pointer;
-    }
-
-    .usuario-dropdown {
-      position: absolute;
-      top: 60px;
-      right: 0;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      border-radius: 10px;
-      display: none;
-      flex-direction: column;
-      min-width: 180px;
-      padding: 10px;
-      z-index: 10;
-    }
-
-    body.modo-oscuro {
-      background-color: #121212;
-      color: #f5f5f5;
-    }
-
-    body.modo-oscuro header {
-      background-color: #1e1e1e;
-    }
-
-    body.modo-oscuro .logo-texto-unido {
-      color: #ffa040;
-    }
-
-    body.modo-oscuro a {
-      color: #ffa040;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Mi perfil-Rentaplus</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <header class="nav-header" id="main-header">
-    <div class="nav-container">
-      <a class="logo-completa" href="index.html">
-        <img src="imagenes/alquiler.jpeg" alt="Rentaplus" class="logo-unido">
-        <span class="logo-texto-unido">Rentaplus</span>
-      </a>
+  <div class="nav-container">
+    <a class="logo-completa" href="index.html">
+      <img src="imagenes/alquiler.jpeg" alt="Rentaplus" class="logo-unido">
+      <span class="logo-texto-unido">Rentaplus</span>
+    </a>
 
-      <nav class="nav-links">
-        <a href="publicar.html" class="nav-btn naranja">Publicar ya</a>
-        <a href="productos.html" class="nav-btn naranja">Alquilar ya</a>
-      </nav>
+    <nav class="nav-links">
+      <a href="publicar.html" class="nav-btn naranja"> Publicar ya</a>
+      <a href="productos.html" class="nav-btn naranja"> Alquilar ya</a>
+    </nav>
 
-      <div class="nav-right">
-        <div id="usuario-menu" class="usuario-menu" style="display:none;">
-          <img id="usuario-foto" class="usuario-foto" src="imagenes/default.png" alt="Usuario">
-          <div class="usuario-dropdown" id="usuario-dropdown">
-            <p id="usuario-nombre"></p>
-            <a href="perfil.html">⚙️ Configurar perfil</a>
-            <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
-            <button id="cerrar-sesion-btn">Cerrar sesión</button>
-          </div>
+    <div class="nav-right">
+      <div id="usuario-menu" class="usuario-menu" style="display:none;">
+        <img id="usuario-foto" class="usuario-foto" src="imagenes/default.png" alt="Usuario">
+        <div class="usuario-dropdown" id="usuario-dropdown">
+          <p id="usuario-nombre"></p>
+          <a href="perfil.html">⚙️ Configurar perfil</a>
+          <a href="#" id="toggle-tema">🌙 Modo oscuro</a>
+          <button id="cerrar-sesion-btn">Cerrar sesión</button>
         </div>
-        <a id="link-sesion" href="login.html" class="login-link">Iniciar sesión</a>
       </div>
+
+      <a id="link-sesion" href="login.html" class="login-link">Iniciar sesión</a>
     </div>
-  </header>
+  </div>
+</header>
 
-  <section id="hero">
-    <h1>Alquila productos <br>que necesites</h1>
-    <a href="productos.html" class="btn-alquilar">ALQUILA YA</a>
-  </section>
+  <main class="perfil-container">
+    <h2>Configuración de perfil</h2>
+    <form id="perfil-form">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" placeholder="Tu nombre" />
 
-  <section id="somos-Rentaplus">
-    <div class="container">
-      <div class="texto">
-        <h2>Somos <span class="color-acento">Rentaplus</span></h2>
-        <p>Somos una empresa joven, innovadora y comprometida. Nuestro propósito es ayudarte a ahorrar dinero, espacio y tiempo alquilando lo que necesites, cuando lo necesites.</p>
-      </div>
-    </div>
-  </section>
+      <label for="foto">Foto de perfil :</label>
+      <input type="file" id="foto" accept="image/*" />
 
-  <section id="caracteristicas">
-    <div class="container">
-      <ul>
-        <li>✔️ 100% online</li>
-        <li>✔️ 100% seguro</li>
-        <li>✔️ Llega rápido</li>
-        <li>✔️ Soporte inmediato</li>
-      </ul>
-    </div>
-  </section>
+      <button type="submit">Guardar cambios</button>
+    </form>
+  </main>
 
-  <footer>
-    <div class="container">
-      <p>&copy; Monovas Company 2025</p>
-    </div>
-  </footer>
+  <script type="module" src="perfil.js"></script>
+  <script src="tema.js"></script>
+  <script src="header-util.js"></script>
 
-  <script type="module">
-    import { auth, signOut, onAuthStateChanged } from "./Firebase.js";
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const contenedorUsuario = document.getElementById("usuario-menu");
-      const nombreElemento = document.getElementById("usuario-nombre");
-      const usuarioFoto = document.getElementById("usuario-foto");
-      const linkSesion = document.getElementById("link-sesion");
-      const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
-      const dropdown = document.getElementById("usuario-dropdown");
-      const toggleTema = document.getElementById("toggle-tema");
-
-      if (localStorage.getItem("tema") === "oscuro") {
-        document.body.classList.add("modo-oscuro");
-        if (toggleTema) toggleTema.textContent = "☀️ Modo claro";
-      }
-
-      if (toggleTema) {
-        toggleTema.addEventListener("click", (e) => {
-          e.preventDefault();
-          document.body.classList.toggle("modo-oscuro");
-          const esOscuro = document.body.classList.contains("modo-oscuro");
-          localStorage.setItem("tema", esOscuro ? "oscuro" : "claro");
-          toggleTema.textContent = esOscuro ? "☀️ Modo claro" : "🌙 Modo oscuro";
-        });
-      }
-
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          if (contenedorUsuario) contenedorUsuario.style.display = "flex";
-          if (nombreElemento) nombreElemento.textContent = user.displayName || user.email;
-          if (usuarioFoto) usuarioFoto.src = user.photoURL || "imagenes/default.png";
-          if (linkSesion) linkSesion.style.display = "none";
-        } else {
-          if (contenedorUsuario) contenedorUsuario.style.display = "none";
-          if (linkSesion) linkSesion.style.display = "inline-block";
-        }
-      });
-
-      if (usuarioFoto && dropdown) {
-        usuarioFoto.addEventListener("click", () => {
-          dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
-        });
-
-        document.addEventListener("click", (e) => {
-          if (!contenedorUsuario.contains(e.target)) dropdown.style.display = "none";
-        });
-      }
-
-      if (cerrarSesionBtn) {
-        cerrarSesionBtn.addEventListener("click", async () => {
-          await signOut(auth);
-          window.location.href = "login.html";
-        });
-      }
-    });
-  </script>
-
-  <script>
-    const header = document.getElementById("main-header");
-    let ultimoScroll = 0;
-    let ocultando = false;
-
-    window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY;
-
-      if (scrollY > ultimoScroll && scrollY > 60 && !ocultando) {
-        ocultando = true;
-        header.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-        header.style.transform = "translateY(-60px)";
-        header.style.opacity = "0.3";
-      }
-
-      if (scrollY < ultimoScroll) {
-        ocultando = false;
-        header.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-        header.style.transform = "translateY(0)";
-        header.style.opacity = "1";
-      }
-
-      ultimoScroll = scrollY;
-    });
-  </script>
 </body>
 </html>
