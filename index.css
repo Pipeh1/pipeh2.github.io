@@ -2036,3 +2036,60 @@ body.modo-oscuro #producto-ubicacion,
 body.modo-oscuro #producto-descripcion {
   color: #f5f5f5 !important;
 }
+
+/* 🌙 Fondo oscuro completo para producto.html */
+body.modo-oscuro {
+  background-color: #121212; /* fondo general oscuro */
+  color: #f5f5f5;
+}
+
+body.modo-oscuro .producto-container {
+  background-color: #1e1e1e; /* fondo de la sección del producto */
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #333;
+}
+
+body.modo-oscuro .producto-imagen {
+  background-color: #1b1b1b;
+  border-radius: 10px;
+  border: 1px solid #333;
+}
+
+body.modo-oscuro .producto-imagen img {
+  box-shadow: none;
+}
+
+body.modo-oscuro .comentarios-section {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  box-shadow: none;
+}
+
+body.modo-oscuro #comentario-form select,
+body.modo-oscuro #comentario-form textarea {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+body.modo-oscuro .btn-alquilar,
+body.modo-oscuro .btn-eliminar,
+body.modo-oscuro .btn-comentario {
+  background-color: #ff7b00;
+  color: #fff;
+  border: none;
+}
+
+body.modo-oscuro .btn-alquilar:hover,
+body.modo-oscuro .btn-comentario:hover {
+  background-color: #cc6600;
+}
+
+body.modo-oscuro .btn-eliminar {
+  background-color: #a62828;
+}
+body.modo-oscuro .btn-eliminar:hover {
+  background-color: #d63232;
+}
