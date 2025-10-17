@@ -2029,3 +2029,10 @@ body.modo-oscuro .btn-eliminar {
 body.modo-oscuro .btn-eliminar:hover {
   background-color: #d63232;
 }
+
+body.modo-oscuro #producto-titulo,
+body.modo-oscuro #producto-precio,
+body.modo-oscuro #producto-ubicacion,
+body.modo-oscuro #producto-descripcion {
+  color: #f5f5f5;
+}
