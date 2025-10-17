@@ -1943,3 +1943,34 @@ body.modo-oscuro a:hover {
   color: #ff7b00;
 }
 
+/* 🌙 Estilos adicionales para modo oscuro */
+body.modo-oscuro .producto-item {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  color: #f5f5f5;
+}
+
+body.modo-oscuro .producto-nombre,
+body.modo-oscuro .producto-precio,
+body.modo-oscuro .producto-ubicacion,
+body.modo-oscuro .producto-descripcion,
+body.modo-oscuro .producto-rating {
+  color: #f5f5f5;
+}
+
+body.modo-oscuro .producto-item:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+body.modo-oscuro .filtros {
+  background-color: #1b1b1b;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+body.modo-oscuro select,
+body.modo-oscuro input {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  color: #fff;
+}
