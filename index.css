@@ -2037,14 +2037,13 @@ body.modo-oscuro #producto-descripcion {
   color: #f5f5f5 !important;
 }
 
-/* 🌙 Fondo oscuro completo para producto.html */
 body.modo-oscuro {
-  background-color: #121212; /* fondo general oscuro */
+  background-color: #121212;
   color: #f5f5f5;
 }
 
 body.modo-oscuro .producto-container {
-  background-color: #1e1e1e; /* fondo de la sección del producto */
+  background-color: #1e1e1e; 
   border-radius: 10px;
   padding: 20px;
   border: 1px solid #333;
@@ -2094,10 +2093,13 @@ body.modo-oscuro .btn-eliminar:hover {
   background-color: #d63232;
 }
 
-/* 🌙 Fondo oscuro para el bloque de información del producto */
 body.modo-oscuro .producto-info {
   background-color: #1e1e1e;
   border-radius: 10px;
   padding: 20px;
   border: 1px solid #333;
+}
+
+.producto-container {
+  margin-top: 100px; 
 }
