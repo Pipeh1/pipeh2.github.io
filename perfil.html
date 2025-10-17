@@ -213,38 +213,31 @@
     const linkSesion = document.getElementById("link-sesion");
     const contenedorUsuario = document.getElementById("usuario-menu");
     const usuarioFoto = document.getElementById("usuario-foto");
-    const dropdown = document.querySelector(".usuario-dropdown");
+    const dropdown = document.getElementById("usuario-dropdown");
     const nombreElemento = document.getElementById("usuario-nombre");
     const cerrarSesionBtn = document.getElementById("cerrar-sesion-btn");
 
-    if (!linkSesion || !contenedorUsuario) {
-      console.warn("⚠️ Algunos elementos del header no se encontraron aún.");
-      return;
-    }
-
-    onAuthStateChanged(auth, user => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
-        contenedorUsuario.style.display = "flex";
-        nombreElemento.textContent = user.displayName || user.email;
-        usuarioFoto.src = user.photoURL || "imagenes/default.png";
-        linkSesion.style.display = "none";
+        if (contenedorUsuario) contenedorUsuario.style.display = "flex";
+        if (nombreElemento) nombreElemento.textContent = user.displayName || user.email;
+        if (usuarioFoto) usuarioFoto.src = user.photoURL || "img/default.png";
+        if (linkSesion) linkSesion.style.display = "none";
       } else {
-        contenedorUsuario.style.display = "none";
-        linkSesion.style.display = "inline-block";
+        if (contenedorUsuario) contenedorUsuario.style.display = "none";
+        if (linkSesion) linkSesion.style.display = "inline-block";
       }
     });
 
-    if (usuarioFoto) {
+    if (usuarioFoto && dropdown) {
       usuarioFoto.addEventListener("click", () => {
         dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
       });
-    }
 
-    document.addEventListener("click", e => {
-      if (contenedorUsuario && !contenedorUsuario.contains(e.target)) {
-        dropdown.style.display = "none";
-      }
-    });
+      document.addEventListener("click", (e) => {
+        if (!contenedorUsuario.contains(e.target)) dropdown.style.display = "none";
+      });
+    }
 
     if (cerrarSesionBtn) {
       cerrarSesionBtn.addEventListener("click", async () => {
@@ -254,6 +247,7 @@
     }
   });
 </script>
+
 
 
   <script>
@@ -280,6 +274,9 @@
     });
   </script>
 
+  
+
   <script src="tema.js"></script>
+
 </body>
 </html>
