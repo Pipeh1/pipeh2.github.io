@@ -1892,3 +1892,53 @@ body.modo-oscuro .usuario-dropdown { background:#222; color:#fff; }
   mix-blend-mode: lighten; 
 }
 
+body.modo-oscuro {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+body.modo-oscuro input,
+body.modo-oscuro textarea,
+body.modo-oscuro select {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  border: 1px solid #333;
+}
+
+body.modo-oscuro input::placeholder,
+body.modo-oscuro textarea::placeholder {
+  color: #aaa;
+}
+
+body.modo-oscuro button,
+body.modo-oscuro .btn-alquilar {
+  background-color: #ff7b00;
+  color: white;
+  border: none;
+}
+
+body.modo-oscuro button:hover,
+body.modo-oscuro .btn-alquilar:hover {
+  background-color: #cc6600;
+}
+
+body.modo-oscuro .form-container,
+body.modo-oscuro form {
+  background-color: #1a1a1a;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+body.modo-oscuro label,
+body.modo-oscuro h1,
+body.modo-oscuro h2,
+body.modo-oscuro p {
+  color: #f5f5f5;
+}
+
+body.modo-oscuro a {
+  color: #ffa040;
+}
+
+body.modo-oscuro a:hover {
+  color: #ff7b00;
+}
