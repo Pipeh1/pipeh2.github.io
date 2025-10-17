@@ -1,40 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const BODY_CLASS = "modo-oscuro";
-  const LS_KEY = "tema";
+  const toggleTema = document.getElementById("toggle-tema");
+  const body = document.body;
+  const temaGuardado = localStorage.getItem("tema");
 
-  const toggles = Array.from(document.querySelectorAll("#toggle-tema"));
-
-  const temaGuardado = localStorage.getItem(LS_KEY);
   if (temaGuardado === "oscuro") {
-    document.body.classList.add(BODY_CLASS);
-  } else {
-    document.body.classList.remove(BODY_CLASS);
+    body.classList.add("oscuro");
+    if (toggleTema) toggleTema.textContent = "☀️ Modo claro";
   }
 
-  function actualizarTextoToggles() {
-    const activo = document.body.classList.contains(BODY_CLASS);
-    toggles.forEach(btn => {
-      if (!btn) return;
-      btn.textContent = activo ? "☀️ Modo claro" : "🌙 Modo oscuro";
-    });
-  }
-
-  actualizarTextoToggles();
-
-  toggles.forEach(btn => {
-    btn.addEventListener("click", (e) => {
+  if (toggleTema) {
+    toggleTema.addEventListener("click", (e) => {
       e.preventDefault();
-      const oscuroActivo = document.body.classList.toggle(BODY_CLASS);
-      localStorage.setItem(LS_KEY, oscuroActivo ? "oscuro" : "claro");
-      actualizarTextoToggles();
+      const oscuroActivo = body.classList.toggle("oscuro");
+      localStorage.setItem("tema", oscuroActivo ? "oscuro" : "claro");
+      toggleTema.textContent = oscuroActivo ? "☀️ Modo claro" : "🌙 Modo oscuro";
     });
-  });
-
-  window.toggleModoOscuro = () => {
-    const oscuroActivo = document.body.classList.toggle(BODY_CLASS);
-    localStorage.setItem(LS_KEY, oscuroActivo ? "oscuro" : "claro");
-    actualizarTextoToggles();
-    return oscuroActivo;
-  };
+  }
 });
-
